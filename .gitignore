@@ -1,0 +1,7 @@
+.DS_Store
+*/.DS_store
+.ipynb_checkpoints
+.lsp
+.clj-kondo
+.vscode
+.calva
