@@ -1,3 +1,4 @@
+(require '[clojure.string :as str])
 ;;if
 
 (let [a 5]
@@ -81,6 +82,32 @@
 
 (classificar-temperatura 15)
 (avaliar-desempenho 100)
+
+;;case
+(let [num 10]
+  (case num
+    1 "one"
+    2 "twp"
+    3 "three"
+    4 "four"
+    5 "five"
+    6 "six"
+    7 "seven"
+    8 "eight"
+    9 "nine"
+    10 "ten"
+    "I don't know")
+  )
+
+(defn categoria-produto [codigo]
+  (case (first (str/upper-case codigo))
+    \A "Alimentos"
+    \B "Bebidas"
+    \E "Eletrônicos"
+    \L "Limpeza"
+    "Categoria desconhecida"))
+
+(categoria-produto "Alimentos")
 
  (comment
    comment
