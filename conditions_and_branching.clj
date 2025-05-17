@@ -54,8 +54,35 @@
 
 
 ;;cond
-(
- comment
- (verificar-idade 17)
- (inicializar-sistema)
- )
+
+(let [number 5]
+  (cond
+    (> number 0) (println number "is positive")
+    (< number 0) (println number "is negative")
+    :else (println "is neither positive nor negative")
+    ))
+
+(defn classificar-temperatura [temp]
+  (cond
+    (< temp 0) "Congelante"
+    (< temp 15) "Frio"
+    (< temp 25) "Agradável"
+    (< temp 35) "Quente"
+    :else "Muito Quente"
+    ))
+
+(defn avaliar-desempenho [nota]
+  (cond
+    (>= nota 90) "Excelente"
+    (>= nota 80) "Muito bom"
+    (>= nota 70) "Bom"
+    (>= nota 60) "Regular"
+    :else "Insuficiente"))
+
+(classificar-temperatura 15)
+(avaliar-desempenho 100)
+
+ (comment
+   comment
+     (verificar-idade 17)
+     (inicializar-sistema))
