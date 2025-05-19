@@ -62,7 +62,7 @@
 (println (add 1 101))
 
 (defn do-math [a b]
-  (* a b)
+  ;;(* a b)
   (+ a b))
 
 (do-math 3 5)
