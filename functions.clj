@@ -54,3 +54,15 @@
 (unlimited-arguments-3 1 2)
 (println)
 (unlimited-arguments-3 1 17 true "Jonh doe")
+
+;;return
+(defn add [a b]
+  (+ a b))
+
+(println (add 1 101))
+
+(defn do-math [a b]
+  (* a b)
+  (+ a b))
+
+(do-math 3 5)
