@@ -66,3 +66,44 @@
   (+ a b))
 
 (do-math 3 5)
+
+
+;;recursion
+(defn count-down [number]
+  (println number)
+  (if (pos? (dec number))
+    (count-down (dec number))))
+
+(count-down 5)
+
+(defn count-down-recur [number]
+  (println number)
+  (if (pos? (dec number))
+    (recur (dec number))))
+
+(count-down-recur 10)
+
+(defn sum [numbers total]
+  (if (empty? numbers)
+    total
+    (recur (rest numbers) (+ total (first numbers)))))
+
+(println (sum [1 2 3 4 5] 0))
+
+(defn collection-sum [collection]
+  (sum collection 0))
+
+(collection-sum [1 2 3 4 5])
+
+;;multimethod
+(defmulti  factorial identity)
+
+(defmethod factorial 0 [_] 1)
+
+(defmethod factorial :default [num]
+ (* num (factorial (dec num))))
+
+(factorial 0)
+(factorial 1)
+(factorial 3)
+(factorial 7)
