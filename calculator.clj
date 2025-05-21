@@ -6,10 +6,11 @@
 (defn operation [a b operator]
   (case operator
     :add (+ (convert a) (convert b))
-    :sub (- a b)
-    :mult (* a b)
-    :div (/ a b)))
+    :sub (- (convert a) (convert b))
+    :mult (* (convert a) (convert b))
+    :div (/ (convert a) (convert b))))
 
+(operation 101 1 :sub)
 (operation 3 3 :add)
 (operation "100" "1" :add)
 (operation 6 3 :mult)
