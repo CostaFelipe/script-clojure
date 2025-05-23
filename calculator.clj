@@ -1,17 +1,20 @@
-(defn convert [c]
-  (if (string? c)
-    (read-string c)
-    (int c)))
+(defn valid-number? [a b]
+  (and (number? a) (number? b)))
 
 (defn operation [a b operator]
-  (case operator
-    :add (+ (convert a) (convert b))
-    :sub (- (convert a) (convert b))
-    :mult (* (convert a) (convert b))
-    :div (/ (convert a) (convert b))))
+  (if (valid-number? a b)
+    (case operator
+      :add (+ a b)
+      :sub (- a b)
+      :mult (* a b)
+      :div (/ a b)
+      :not_exist)
+     "Não não pode colocar string"
+    ))
 
-(operation 101 1 :sub)
+(operation "101" 1 :sub)
 (operation 3 3 :add)
 (operation "100" "1" :add)
 (operation 6 3 :mult)
 (operation 9 3 :div)
+(operation 2 2 :sos)
