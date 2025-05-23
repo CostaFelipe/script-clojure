@@ -10,13 +10,34 @@
 (s/valid? set? #{:apple :orange})
 (s/valid? keyword? :ubuntu)
 
-(defn string-or-keyword? [a]
+
+;;or - exercício
+
+(defn string-or-keyword-um? [a]
   (if (or (string? a) (keyword? a))
       true
       false
     ))
-;;or
 
-(s/valid? string-or-keyword? 101)
-(s/valid? string-or-keyword? :abc)
-(s/valid? string-or-keyword? "32")
+(s/valid? string-or-keyword-um? 101)
+(s/valid? string-or-keyword-um? :abc)
+(s/valid? string-or-keyword-um? "32")
+
+;;refatorando string-or-keyword?
+(def string-or-keyword?
+  (s/or :keyword keyword? :string string?))
+
+(s/valid? string-or-keyword? 1001)
+(s/valid? string-or-keyword? :ubuntu)
+(s/valid? string-or-keyword? "404")
+
+;;collection spec
+
+(def string-collection? (s/coll-of string?))
+
+(s/valid? string-collection? ["Hi" "Hello"])
+
+(def number-or-string?
+  (s/or :number number? :string string?))
+
+(s/valid? number-or-string? 1)
