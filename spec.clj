@@ -74,3 +74,26 @@
 (s/valid? ::user {:name "Johnny B Goode"
                              :age 45
                              :gender :male})
+
+;;exp espec
+
+(s/explain number? "42")
+(s/explain number? 42)
+(s/explain string? "johnny doe")
+(s/explain number-or-string? :56)
+(s/explain number-or-string? 202)
+
+
+;;conform
+(s/conform number? 101)
+(s/conform number? "404")
+(s/conform number-or-string? 202)
+
+;;spec in funtions
+(defn add-two-numbers [a b]
+  {:pre [(s/valid? number? a)
+         (s/valid? number? b)]}
+  (+ a b))
+
+(add-two-numbers 100 "1")
+(add-two-numbers 201 1)
