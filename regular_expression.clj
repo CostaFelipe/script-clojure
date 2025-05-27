@@ -1,3 +1,4 @@
+(require '[clojure.string :as str])
 "A string"
 
 (type "A String")
@@ -29,3 +30,10 @@
 (re-seq #"(?i)ABC" "abc are small letters and ABC are capitals.")
 
 (re-seq #"[A-Z]+" "Finds all CAPITAL letter WORDS.")
+
+;;clojure string
+(str/replace "There   are    lots   of   spaces" #"\s+" " ")
+
+(str/split "There   are  lots   of   spaces" #"\s")
+
+(str/split "There are lots of spaces" #"\s+")
