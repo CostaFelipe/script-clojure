@@ -17,10 +17,10 @@
   (println "Scientist is" scientist))
 
 
-(def people
-  {:musician "Bash"
-   :scientist "Ada"
-   :artist "Clint Eastwood"})
+;;(def people
+;;  {:musician "Bash"
+;;   :scientist "Ada"
+;;   :artist "Clint Eastwood"})
 
 (let [{scientist :scientist musician :musician artist :artist} people]
   (println "Scientist is" scientist)
