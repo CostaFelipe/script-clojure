@@ -1,6 +1,6 @@
 (require '[clojure.test :refer [deftest is testing]]  )
 
-(load-file "/home/wedo/Development/clojure-projetos/mini-clojure/calculator.clj")
+(load-file "calculator.clj")
 
 (deftest calculator_test
   (testing "calculator"
