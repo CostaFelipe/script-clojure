@@ -11,4 +11,6 @@
         :else numero
         ))
 
-(fizzbuzz 1)
+(def um-range-30 (range 1 30))
+
+(map fizzbuzz um-range-30)
