@@ -32,9 +32,9 @@
   (str (:data transacao) " => " (valor-sinalizado transacao)))
 
 (defn transacao-em-yuan [transacao]
-  (let [yuan (:yuan cotacoes)]
-    (assoc transacao :valor (* (:cotacao yuan) (:valor transacao))
-           :moeda (:simbolo yuan))))
+  (let [{{cotacao :cotacao simbolo :simbolo} :yuan} cotacoes]
+    (assoc transacao :valor (* cotacao (:valor transacao))
+           :moeda simbolo)))
 
 (defn texto-resumo-em-yuan [transacao]
   (-> (transacao-em-yuan transacao)
@@ -88,3 +88,6 @@
 (data-valor (transacao-em-yuan (first transacoes)))
 
 (map texto-resumo-em-yuan transacoes)
+
+;;(def texto-resumo-em-yuan (comp data-valor transacao-em-yuan))
+;;(map texto-resumo-em-yuan transacoes)
