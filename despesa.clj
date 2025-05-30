@@ -40,6 +40,11 @@
   (-> (transacao-em-yuan transacao)
       (data-valor)))
 
+(defn transacao-em-outra-moeda [moeda transacao]
+  (let [{{cotacao :cotacao simbolo :simbolo} moeda} cotacoes]
+    (assoc transacao :valor (* cotacao (:valor transacao))
+                     :moeda simbolo)))
+
 ;;executing
 
 (map resumo transacoes)
@@ -91,3 +96,6 @@
 
 ;;(def texto-resumo-em-yuan (comp data-valor transacao-em-yuan))
 ;;(map texto-resumo-em-yuan transacoes)
+
+(transacao-em-outra-moeda :euro (last transacoes))
+(transacao-em-outra-moeda :yuan (first transacoes))
