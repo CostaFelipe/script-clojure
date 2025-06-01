@@ -6,7 +6,7 @@
 
 (def cotacoes
   {:yuan {:cotacao 2.15M :simbolo "¥"}
-   :euro {:cotacao 6.49M :simbolo "€"}})
+   :euro {:cotacao 0.15M :simbolo "€"}})
 
 ;;functions
 (defn resumo [transacao]
@@ -44,6 +44,14 @@
   (let [{{cotacao :cotacao simbolo :simbolo} moeda} cotacoes]
     (assoc transacao :valor (* cotacao (:valor transacao))
                      :moeda simbolo)))
+
+(defn transacao-convertida
+  ([cotacoes moeda transacao]
+    (let [{{cotacao :cotacao simbolo :simbolo} moeda} cotacoes]
+      (assoc transacao :valor (* cotacao (:valor transacao))
+             :moeda simbolo)))
+  ([moeda transacao]
+   (transacao-convertida cotacoes moeda transacao)))
 
 ;;executing
 
@@ -114,3 +122,7 @@
 (def juntar-tudo (partial clojure.string/join ", "))
 
 (juntar-tudo (map texto-resumo-em-yuan transacoes))
+
+(def transacao-em-outra-moeda (partial transacao-convertida cotacoes))
+
+(transacao-convertida cotacoes :euro (first transacoes))
