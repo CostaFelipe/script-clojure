@@ -99,3 +99,18 @@
 
 (transacao-em-outra-moeda :euro (last transacoes))
 (transacao-em-outra-moeda :yuan (first transacoes))
+
+(def transacao-em-euro (partial transacao-em-outra-moeda :euro))
+(def transacao-em-yuan (partial transacao-em-outra-moeda :yuan))
+
+(transacao-em-euro (first transacoes))
+(transacao-em-yuan (second transacoes))
+
+(map transacao-em-euro transacoes)
+(map transacao-em-yuan transacoes)
+
+(clojure.string/join ", " (map texto-resumo-em-yuan transacoes))
+
+(def juntar-tudo (partial clojure.string/join ", "))
+
+(juntar-tudo (map texto-resumo-em-yuan transacoes))
