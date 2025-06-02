@@ -62,7 +62,7 @@
 (defn transacao-em-outra-moeda [moeda transacao]
   (let [{{cotacao :cotacao simbolo :simbolo} moeda} cotacoes]
     (assoc transacao :valor (* cotacao (:valor transacao))
-                     :moeda simbolo)))
+           :moeda simbolo)))
 
 (defn transacao-convertida
   ([cotacoes moeda transacao]
@@ -72,16 +72,27 @@
   ([moeda transacao]
    (transacao-convertida cotacoes moeda transacao)))
 
+(defn calcular [acumulado transacao]
+  (let [valor (:valor transacao)]
+    (if (despesa? transacao)
+      (- acumulado valor)
+      (+ acumulado valor))))
+
 (defn saldo-acumulado [acumulado transacoes]
   (if-let [transacao (first transacoes)]
-    (saldo-acumulado (if (despesa? transacao)
-                       (- acumulado (:valor transacao))
-                       (+ acumulado (:valor transacao)))
-                     (rest transacoes))
-    acumulado))
+    (do
+      (prn "Começou saldo-acumulado. Saldo até agora:" acumulado)
+      (saldo-acumulado (calcular acumulado transacao)
+                       (rest transacoes)))
+    (do
+      (prn "Processo encerrado. Saldo final:" acumulado)
+      acumulado)))
+
 
 (registrar {:valor 101.0M :tipo "despesa" :comentario "Jogo no Steam" :moeda "R$" :data "26/05/2025"})
 (registrar {:valor 33.0M :tipo "despesa" :comentario "Almoço" :moeda "R$" :data "19/05/2025"})
+(registrar {:valor 2700.0M :tipo "receita" :comentario "bico" :moeda "R$" :data "21/03/2025"})
+(registrar {:valor 89.9M :tipo "despesa" :comentario "Livro golang" :moeda "R$" :data "20/04/2025"})
 
 (def transacoes @registros)
 
