@@ -72,6 +72,14 @@
   ([moeda transacao]
    (transacao-convertida cotacoes moeda transacao)))
 
+(defn saldo-acumulado [acumulado transacoes]
+  (if-let [transacao (first transacoes)]
+    (saldo-acumulado (if (despesa? transacao)
+                       (- acumulado (:valor transacao))
+                       (+ acumulado (:valor transacao)))
+                     (rest transacoes))
+    acumulado))
+
 (registrar {:valor 101.0M :tipo "despesa" :comentario "Jogo no Steam" :moeda "R$" :data "26/05/2025"})
 (registrar {:valor 33.0M :tipo "despesa" :comentario "Almoço" :moeda "R$" :data "19/05/2025"})
 
@@ -82,6 +90,9 @@ transacoes
 (count transacoes)
 
 ;;executing
+(saldo-acumulado 0 transacoes)
+(saldo-acumulado 0 ())
+(saldo-acumulado 0 (take 2 transacoes))
 
 (map resumo transacoes)
 
