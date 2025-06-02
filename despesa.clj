@@ -72,6 +72,17 @@
   ([moeda transacao]
    (transacao-convertida cotacoes moeda transacao)))
 
+(registrar ({:valor 33.0M :tipo "despesa" :comentario "almoço" :moeda "R$" :data "20/03/2025"}
+            {:valor 2700.0M :tipo "receita" :comentario "bico" :moeda "R$" :data "21/03/2025"}
+            {:valor 89.9M :tipo "despesa" :comentario "Livro golang" :moeda "R$" :data "20/04/2025"}
+            {:valor 101.0M :tipo "despesa" :comentario "Jogo no Steam" :moeda "R$" :data "26/05/2025"}))
+
+(def transacoes @registros)
+
+transacoes
+
+(count transacoes)
+
 ;;executing
 
 (map resumo transacoes)
@@ -145,9 +156,3 @@
 (def transacao-em-outra-moeda (partial transacao-convertida cotacoes))
 
 (transacao-convertida cotacoes :euro (first transacoes))
-
-(registrar {:valor 101.0M :tipo "despesa" :comentario "Jogo no Steam" :moeda "R$" :data "26/05/2025"})
-
-(def transacoes @registros)
-
-transacoes
