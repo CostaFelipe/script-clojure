@@ -1,14 +1,33 @@
+(def registros (atom ()))
+
 ;;data
-(def transacoes
-  [{:valor 33.0M :tipo "despesa" :comentario "almoço" :moeda "R$" :data "20/03/2025"}
-   {:valor 2700.0M :tipo "receita" :comentario "bico" :moeda "R$" :data "21/03/2025"}
-   {:valor 89.9M :tipo "despesa" :comentario "Livro golang" :moeda "R$" :data "20/04/2025"}])
+;(def transacoes
+;  [{:valor 33.0M :tipo "despesa" :comentario "almoço" :moeda "R$" :data "20/03/2025"}
+;   {:valor 2700.0M :tipo "receita" :comentario "bico" :moeda "R$" :data "21/03/2025"}
+;   {:valor 89.9M :tipo "despesa" :comentario "Livro golang" :moeda "R$" :data "20/04/2025"}])
+
+;(def transacoes (cons {:valor 101 :tipo "despesa"
+;                       :comentario "Jogo no Steam" :moeda "R$"
+;                       :data "26/05/2025"} transacoes))
+
+;;(conj :valor 33.0M {:tipo "despesa" :comentario "almoço" :moeda "R$" :data "20/03/2025"} ())
+
+;;(swap! registros conj {:valor 79.89 :tipo "despesa" :comentario "Livro Clojure"
+;;                       :moeda "R$" :data "17/05/2025"})
+
+;;(swap! registros conj {:valor 2700.0M :tipo "receita" :comentario "bico" :moeda "R$" :data "21/03/2025"})
+
+;;@registros
 
 (def cotacoes
   {:yuan {:cotacao 2.15M :simbolo "¥"}
    :euro {:cotacao 0.15M :simbolo "€"}})
 
 ;;functions
+
+(defn registrar [transacao]
+  (swap! registros conj transacao))
+
 (defn resumo [transacao]
   (select-keys transacao [:valor :tipo :data]))
 
@@ -126,3 +145,9 @@
 (def transacao-em-outra-moeda (partial transacao-convertida cotacoes))
 
 (transacao-convertida cotacoes :euro (first transacoes))
+
+(registrar {:valor 101.0M :tipo "despesa" :comentario "Jogo no Steam" :moeda "R$" :data "26/05/2025"})
+
+(def transacoes @registros)
+
+transacoes
