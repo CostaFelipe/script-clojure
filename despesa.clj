@@ -96,17 +96,34 @@ transacoes
 (count transacoes)
 
 (defn saldo
-  ([transacoes]
-   (saldo-acumulado 0 transacoes))
+  ([transacoes] (saldo 0 transacoes))
   ([acumulado transacoes]
-   (if-let [transacao (first transacoes)]
-     (saldo-acumulado (calcular acumulado transacao)
-                      (rest transacoes)) acumulado)))
+   (if (empty? transacoes)
+     acumulado
+     (recur (calcular acumulado (first transacoes))
+            (rest transacoes)))))
 
 ;;executing
+
+(defn como-transacao [valor]
+  {:valor valor})
+
+(def poucas-transacoes
+  (map como-transacao (range 10)))
+
+(def muitas-transacoes
+  (map como-transacao (range 1000)))
+
+(def incontaveis-transacoes
+  (map como-transacao (range 100000)))
+
 (saldo transacoes)
 
-(saldo 2 transacoes)
+(saldo poucas-transacoes)
+(saldo muitas-transacoes)
+(saldo incontaveis-transacoes)
+
+(reduce calcular 0 transacoes)
 
 (map resumo transacoes)
 
