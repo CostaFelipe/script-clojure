@@ -95,10 +95,18 @@ transacoes
 
 (count transacoes)
 
+(defn saldo
+  ([transacoes]
+   (saldo-acumulado 0 transacoes))
+  ([acumulado transacoes]
+   (if-let [transacao (first transacoes)]
+     (saldo-acumulado (calcular acumulado transacao)
+                      (rest transacoes)) acumulado)))
+
 ;;executing
-(saldo-acumulado 0 transacoes)
-(saldo-acumulado 0 ())
-(saldo-acumulado 0 (take 2 transacoes))
+(saldo transacoes)
+
+(saldo 2 transacoes)
 
 (map resumo transacoes)
 
