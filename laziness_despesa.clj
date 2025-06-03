@@ -16,7 +16,7 @@
 (= (take 5 transacoes-aleatorias) (take 5 transacoes-aleatorias))
 
 ;;macro lazy-seq
-(cons (transacao-aleatoria) transacoes)
+;;(cons (transacao-aleatoria) transacoes)
 
 (defn aleatorias
   ([quantidade] (aleatorias quantidade 1 (list (transacao-aleatoria))))
