@@ -80,13 +80,8 @@
 
 (defn saldo-acumulado [acumulado transacoes]
   (if-let [transacao (first transacoes)]
-    (do
-      (prn "Começou saldo-acumulado. Saldo até agora:" acumulado)
-      (saldo-acumulado (calcular acumulado transacao)
-                       (rest transacoes)))
-    (do
-      (prn "Processo encerrado. Saldo final:" acumulado)
-      acumulado)))
+    (saldo-acumulado (calcular acumulado transacao)
+                     (rest transacoes)) acumulado))
 
 
 (registrar {:valor 101.0M :tipo "despesa" :comentario "Jogo no Steam" :moeda "R$" :data "26/05/2025"})
