@@ -7,13 +7,16 @@
 
 (clojure.string/replace "Felipe" "e" "1")
 
+(defn conversor [texto dicionario]
+  (let [conversao (first dicionario)]
+    (clojure.string/replace texto
+                            (:de conversao)
+                            (:para conversao))))
+
 (defn escrita-hacker [texto dicionario]
   (if (empty? dicionario)
     texto
-    (let [conversao (first dicionario)]
-      (escrita-hacker (clojure.string/replace texto
-                                              (:de conversao)
-                                              (:para conversao))
-             (rest dicionario)))))
+    (escrita-hacker (conversor texto dicionario)
+                    (rest dicionario))))
 
 (escrita-hacker "alameda" de-para)
