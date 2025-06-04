@@ -1,12 +1,12 @@
 (ns calculadora.operacoes.operacao)
 
-(defn valid-number? [a b]
+(defn- valid-number? [a b]
   (and (number? a) (number? b)))
 
 (defn- sum [a b]
   (+ a b))
 
-(defn apply-operator [a b operator]
+(defn- apply-operator [a b operator]
   (case operator
     :add (sum a b)
     :sub (- a b)
