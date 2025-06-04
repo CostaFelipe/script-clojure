@@ -3,7 +3,6 @@
 (defn valid-number? [a b]
   (and (number? a) (number? b)))
 
-
 (defn- sum [a b]
   (+ a b))
 
