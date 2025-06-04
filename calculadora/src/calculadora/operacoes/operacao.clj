@@ -1,3 +1,5 @@
+(ns calculadora.operacoes.operacao)
+
 (defn valid-number? [a b]
   (and (number? a) (number? b)))
 
@@ -7,10 +9,9 @@
     :sub (- a b)
     :mult (* a b)
     :div (/ a b)
-    :not_exist)
-  )
+    :not_exist))
 
 (defn operation [a b operator]
   (if (valid-number? a b)
     (apply-operator a b operator)
-    "Não não pode colocar string"))
+    "Não pode colocar string"))
