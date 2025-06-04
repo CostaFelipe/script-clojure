@@ -4,8 +4,14 @@
 
 (comment
   (operation 100 1 :add)
+  (operation 10 5 :div)
+  (operation 0 5 :div)
+  (operation 5 0 :div)
+  (operation 5 5 :mult)
+  (operation 5 20 :sub)
+  (operation 100 1 :ex)
   )
 
 (defn -main
   [& args]
-  (println (operation 100 1 :add)))
+  (println "calculadora"))
