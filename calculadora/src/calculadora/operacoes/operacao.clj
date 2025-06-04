@@ -1,29 +1,19 @@
 (ns calculadora.operacoes.operacao)
 
+(def operadores
+  {:add +
+   :sub -
+   :div /
+   :mult *}
+   )
+
 (defn- valid-number? [a b]
   (and (number? a) (number? b)))
 
-(defn- sum [a b]
-  (+ a b))
-
-(defn- sub [a b]
-  (- a b))
-
-(defn- mult [a b]
-  (* a b))
-
-(defn- div [a b]
-  (if (zero? b)
-    "Erro: divisão por zero"
-    (/ a b)))
-
 (defn- apply-operator [a b operator]
-  (case operator
-    :add (sum a b)
-    :sub (sub a b)
-    :mult (mult a b)
-    :div (div a b)
-    :not_exist))
+  (if (and (zero? 0) (= operator :div))
+    "Error: Divide by zero"
+    ((operator operadores) a b)))
 
 (defn operation [a b operator]
   (if (valid-number? a b)

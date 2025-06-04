@@ -9,7 +9,6 @@
   (operation 5 0 :div)
   (operation 5 5 :mult)
   (operation 5 20 :sub)
-  (operation 100 1 :ex)
   )
 
 (defn -main
