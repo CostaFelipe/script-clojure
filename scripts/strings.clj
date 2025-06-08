@@ -54,3 +54,28 @@
 (map char (range 97 122))
 
 (map (comp str char) (range 97 122))
+
+(def me {:first-name "Ryan", :favorite-language "Clojure"})
+
+(str "My name is " (:first-name me) ", and I really like to program in " (:favorite-language me))
+
+(apply str (interpose " " [1 2.000 (/ 3 1) (/ 4 9)]))
+
+(format "%07.3f" 0.005)
+
+(defn filename [name i]
+  (format "%03d-%s" i name))
+
+(filename "my-awesome-file.txt" 101)
+
+(defn tableify [row]
+  (apply format "%-20s | %-20s | %-20s" row))
+
+(def header ["First Name" "Last Name" "Employee ID"])
+
+(def employees [["Ryan" "Neufeld" 2]
+                ["Luke" "Vanderhart" 1]])
+
+(->> (concat [header] employees)
+     (map tableify)
+     (mapv println))
