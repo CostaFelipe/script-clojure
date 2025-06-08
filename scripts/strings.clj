@@ -79,3 +79,24 @@
 (->> (concat [header] employees)
      (map tableify)
      (mapv println))
+
+(re-find #"\d+" "teste 123")
+
+(re-find #"bees" "Beads aren't cheap.")
+
+(re-matches #"\w+" "my-params")
+
+(re-matches #"\w+" "justLetters")
+
+(re-seq #"\w+" "My favorite things")
+
+(re-seq #"\d{3}-\d{4}" "My phone number is 777-2222")
+
+(defn mentions [tweet]
+  (re-seq #"(@|#)(\w+)" tweet))
+
+(mentions "So long, @earth, and thanks for all the #fish. #goodbyes")
+
+(def re-phone-number #"(\w+): \((\d{3})\) (\d{3}-\d{4})")
+
+(re-seq re-phone-number "Home: (919) 555-1234, Work: (191) 555-1234")
