@@ -109,5 +109,64 @@
 (defn de-canadianize [s]
   (str/replace s "ou" "o"))
 
+(de-canadianize (str "Those Canadian neighbours have coloured behaviour
+                      when it comes to word endings"))
 
-(de-canadianize (str "Those Canadian neighbours have coloured behaviour when it comes to word endings"))
+(defn linkify-comment [repo comment]
+  (str/replace comment
+               #"#(\d+)"
+               (str "[#$1](https://github.com/)" repo "/issues/$1)")))
+
+(linkify-comment "next/big-thing" "As soon as we fix #42 and #1337 we
+                 should be set to release!")
+
+(str/split "HEADER1,HEADER2,HEADER3" #",")
+
+(str/split "Spaces   Newlines\n\n" #"\s+")
+
+(str/split "field1     field2  field3"  #"\s+")
+
+(str/split "ryan,neufeld," #"," -1)
+
+(def data-delimiters #"[ :-]")
+
+(str/split "2013-04-05 14:39" data-delimiters)
+
+(str/split "2013-04-05 14:39" data-delimiters 1)
+
+(str/split "2013-04-05 14:39" data-delimiters 2)
+
+(str/split "2013-04-05 14:39" data-delimiters 100)
+
+;;convert
+(symbol "valid?")
+
+(str "valid?")
+
+(:name :triumph)
+
+(str :triumph)
+
+(keyword "fantastic")
+
+(keyword 'fantastic)
+
+(symbol (name :wonderful))
+
+(name :user/valid?)
+
+(namespace :user/valid?)
+
+(str :user/valid?)
+
+(.substring (str :user/valid?) 1)
+
+(keyword 'produce/onions)
+
+(symbol (.substring (str :produce/onions) 1))
+
+(def shopping-area "bakery")
+
+(keyword shopping-area "bagels")
+
+(symbol shopping-area "cakes")
