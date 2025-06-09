@@ -61,3 +61,31 @@
 (with-precision 3 (/ 1 3))
 
 (with-precision 3 (/ (bigdec 1) 3))
+
+(defn fuzzy= [tolerance x y]
+  (let [diff (Math/abs (- x y))]
+    (< diff tolerance)))
+
+(fuzzy= 0.01 10 10.000000000001)
+
+(fuzzy= 0.01 10 10.1)
+
+(- 0.22 0.23)
+
+(- 0.23 0.24)
+
+(def equal-within-ten? (partial fuzzy= 10))
+
+(equal-within-ten? 100 109)
+
+(equal-within-ten? 100 110)
+
+(equal-within-ten? 20 29)
+
+(defn fuzzy-comparator [tolerance]
+  (fn [x y]
+    (if (fuzzy= tolerance x y) ;
+      0
+      (compare x y))))
+
+(sort (fuzzy-comparator 10) [100 11 150 10 9])
