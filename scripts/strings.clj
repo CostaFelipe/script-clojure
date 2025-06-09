@@ -13,6 +13,7 @@
 (str/replace "Hello" #"l" "1")
 
 (str/lower-case "ipsum dex")
+
 (str/upper-case "ipsum dex")
 
 (apply str [\H \e \l \l \o \  \W \o \r \l \d])
@@ -66,7 +67,7 @@
 (defn filename [name i]
   (format "%03d-%s" i name))
 
-(filename "my-awesome-file.txt" 101)
+(filename "my-awesome-file.txt" 1)
 
 (defn tableify [row]
   (apply format "%-20s | %-20s | %-20s" row))
@@ -82,7 +83,7 @@
 
 (re-find #"\d+" "teste 123")
 
-(re-find #"bees" "Beads aren't cheap.")
+(re-find #"Beads" "Beads aren't cheap.")
 
 (re-matches #"\w+" "my-params")
 
@@ -100,3 +101,13 @@
 (def re-phone-number #"(\w+): \((\d{3})\) (\d{3}-\d{4})")
 
 (re-seq re-phone-number "Home: (919) 555-1234, Work: (191) 555-1234")
+
+(def about-me "My favorite color is green")
+
+(str/replace about-me "green" "red")
+
+(defn de-canadianize [s]
+  (str/replace s "ou" "o"))
+
+
+(de-canadianize (str "Those Canadian neighbours have coloured behaviour when it comes to word endings"))
