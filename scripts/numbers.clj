@@ -188,3 +188,24 @@
 (median [7 0])
 
 (median [5 3 11])
+
+(defn mode [coll]
+  (let [freqs (frequencies coll)
+        occurrences (group-by second freqs)
+  ] occurrences))
+
+(mode [:teste :one :two :teste :orange])
+
+(mode ["orange" "one" "two" "testing" "test" "one"])
+
+(defn mode-2 [coll]
+  (let [freqs (frequencies coll)
+        occurrences (group-by second freqs)
+        modes (last (sort occurrences))
+        modes (->> modes
+                   second
+                   (map first))] modes))
+
+(mode-2 [:alan :bob :alan :greg])
+
+(mode [:smith :carpenter :doe :smith :doe])
