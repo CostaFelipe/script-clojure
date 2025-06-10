@@ -209,3 +209,5 @@
 (mode-2 [:alan :bob :alan :greg])
 
 (mode [:smith :carpenter :doe :smith :doe])
+
+(shuffle [1 2 3 4 5 6])
