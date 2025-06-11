@@ -78,3 +78,63 @@
 
 ;You have a vector, and you want to retrieve the value the vector contains at a particular
 ;location (index).
+(nth [:a :b :c :d :e] 3)
+
+(nth [:a :b :c] 4)
+
+(nth [:a :b :c] 4 :not-found)
+
+(def v [:a :b :c])
+
+(v 2)
+
+(get [:a :b :c ] 5)
+
+(get [:a :b :c :d] 5 :not-found)
+
+;Given a vector, you would like to obtain a new vector with a different value at a particular
+;index.
+
+(assoc [:a :b :c] 1 :x)
+
+(assoc [:a :b :c] 1 :x 2 :y)
+
+;You want to create an unordered collection of distinct objects, which can be tested for
+;membership quickly.
+
+#{:a :b :c}
+
+#{:x :y :z :z :z}
+
+(hash-set :a :b :c)
+
+(apply hash-set :a [:b :c])
+
+(set "Hello")
+
+(into #{} [:a :b :c :a])
+
+(into #{:a :b} [:b :c :d])
+
+(sorted-set 99 4 32 7)
+
+(into (sorted-set) "the quick brown fox jumps over the lazy dog")
+
+(def alphabet (into (sorted-set) "qwertyuiopasdfghjklzxcvbnm"))
+;;remember
+
+(map char (range 97 242))
+
+(println alphabet)
+
+(last alphabet)
+
+(first alphabet)
+
+(second (disj alphabet \b))
+
+(def descending-set (sorted-set-by > 1 2 3))
+
+(into descending-set [-1 4])
+
+;;You want to obtain a new set with items added or removed.
