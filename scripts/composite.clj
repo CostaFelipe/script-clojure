@@ -1,3 +1,4 @@
+(require '[clojure.set :as set])
 ;You want to create a list data structure in your source code.
 
 '(1 :2 "3")
@@ -104,7 +105,7 @@
 
 #{:a :b :c}
 
-#{:x :y :z :z :z}
+;;#{:x :y :z :z :z}
 
 (hash-set :a :b :c)
 
@@ -138,3 +139,84 @@
 (into descending-set [-1 4])
 
 ;;You want to obtain a new set with items added or removed.
+(conj #{:a :b :c} :d)
+
+(conj #{:a :b :c} :d :e)
+
+(disj #{:a :b :c} :b)
+
+(disj #{:a :b :c} :b :c)
+
+;You want to check if an item is a member of a set.
+(contains? #{:red :white :green} :blue)
+
+(contains? #{:red :white :green} :green)
+
+(get #{:red :white :green} :blue)
+
+(get #{:red :white :green} :green)
+
+(def my-set #{:red :white :green})
+
+(my-set :blue)
+
+(my-set :red)
+
+(:blue #{:red :white :green})
+
+(:green #{:red :white :green})
+
+(take 3
+      (filter #{1 2 3}
+              (repeatedly #(rand-int 10))))
+
+;You want to perform common operations on sets, such as taking the union, intersection,
+;or difference of two sets, or you want to test if one set is a subset or superset of another.
+
+(clojure.set/union #{:red :white} #{:white :blue} #{:blue :green})
+
+(clojure.set/intersection #{:red :white :blue}
+                          #{:red :blue :green}
+                          #{:yellow :blue :red})
+
+(set/difference #{:red :white :blue :yellow}
+                        #{:red :blue}
+                        #{:white})
+
+(set/subset? #{:blue :white}
+                     #{:red :white :blue})
+
+(set/subset? #{:blue :black} #{:red :white :blue})
+
+;You want to create an association that maps keys to values. You possibly want to maintain
+;a specific ordering of keys.
+
+{:name ""
+ :class :barbarian
+ :race :half-orc
+ :level 20
+ :skills [:bashing :hacking :smashing]}
+
+{1 1, 8 64, 2 4, 9 81}
+
+(array-map)
+
+(sorted-map :key1 "val1" :key2 "val2")
+
+(sorted-map-by #(< (count %1) (count %2))
+          "pigs" 14
+               "horses" 2
+               "elephants" 1
+               "manatees" 3)
+
+
+;You want to retrieve the value stored at a particular key in a map.
+(get {:name "Kvothe" :class "Bard"} :name)
+
+(get {:name "Kvothe" :class "Bard"} :race)
+
+(get {:name "Kvothe" :class "Bard"} :race "Human")
+
+(:name {:name "Marcus" :class "Paladin"})
+
+(:race {:name "Marcus" :class "Paladin"} "Human")
