@@ -220,3 +220,80 @@
 (:name {:name "Marcus" :class "Paladin"})
 
 (:race {:name "Marcus" :class "Paladin"} "Human")
+
+(def character {:name "Brock" :class "Barbarian"})
+
+(character :name)
+
+(:class character)
+
+(character :race)
+
+(character :race "Human")
+
+(get-in {:name "Marcus" :weapon {:type :greatsword :damage "2d6"}}
+        [:weapon :damage])
+
+(get-in {:name "Marcus"}
+        [:weapon :damage])
+
+(get-in {:name "Marcus"}
+        [:weapon :damage]
+        "1d2 (first)")
+
+(get-in [{:name "Marcus" :class "Paladin"}
+         {:name "Kvothe" :class "Bard"}
+         {:name "Felter" :class "Druid"}]
+        [1 :class])
+
+(defn square [x] (* x x))
+
+(def square {1 1, 2 4, 3 9, 4 16, 5 25})
+
+(square 3)
+
+;You want to retrieve multiple values from a map at one time.
+(def beans {:red 10
+            :blue 3
+            :green 1})
+
+(reduce + (vals (select-keys beans [:red :green])))
+
+((juxt :red :green) beans)
+
+(def weird-map {"a" 1, {:foo :bar} :baz, 13 21})
+
+(select-keys weird-map ["a" {:foo :bar}])
+
+(vals {{:foo :bar} :baz, "a" 1})
+
+(def a-str-then-foo-bar-map
+  (juxt #(get % "a")
+        #(get % {:foo :bar})))
+
+(a-str-then-foo-bar-map weird-map)
+
+;You want to “change” a map by adding, setting, or removing keys.
+
+;(def villain {:honorific "Dr." :name "Mayhem"})
+;(assoc villain :occupation "Mad Scientist" :status :at-large)
+
+;(def villain {:honorific "Dr.", :name "Mayhem", :occupation "Mad Scientist", :status :at-large})
+
+;(assoc villain :status :deceased)
+
+(def villain {:honorific "Dr.", :name "Mayhem", :occupation "Mad Scientist", :status :deceased})
+
+(dissoc villain :occupation :honorific)
+
+(def book {:title "Clojure Cookbook"
+           :author {:name "Ryan Neufeld"
+                    :residence {:country "USA"}}})
+
+(assoc book :author (assoc (:author book) :residence (assoc (:residence (:author book)) :country "Canada")))
+
+(assoc-in book [:author :residence :country] "Canada")
+
+(assoc-in book [:author :name] "Testando")
+
+(assoc-in book [:title] "Test")
