@@ -376,3 +376,30 @@
 (val entry)
 
 ;;You’d like to apply a transformation function to the keys or the values of a map.
+(defn map-keys [m f]
+  (zipmap (map f (keys m)) (vals m)))
+
+(map-keys {"a" 1 "b" 2} keyword)
+
+(defn map-vals [m f]
+  (zipmap (keys m) (map f (vals m))))
+
+(map-vals {:a 100 :b 101} inc)
+
+;(defn map-kv [m f]
+;  (into {} (map (fn [[k v]] (f k v)) m)))
+
+;(map-kv {"a" 1 "b" 1} (fn [k v] [(keyword k) (inc v)]))
+
+(reduce-kv (fn [agg _ val]
+             (+ agg val))
+           0
+           {:a 1 :b 2 :c 3})
+
+(defn map-kv [m f]
+  (reduce-kv (fn [agg k v] (conj agg (f k v))) {} m))
+
+(map-kv {:one 1 :two 2 :three 3} #(vector (-> %1 str (subs 1)) (inc %2)))
+
+;You would like to create a map-like data structure that implements a multimap-like
+;interface in Clojure.
