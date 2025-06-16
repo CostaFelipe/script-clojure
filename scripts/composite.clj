@@ -263,6 +263,7 @@
 
 (def weird-map {"a" 1, {:foo :bar} :baz, 13 21})
 
+
 (select-keys weird-map ["a" {:foo :bar}])
 
 (vals {{:foo :bar} :baz, "a" 1})
@@ -297,3 +298,24 @@
 (assoc-in book [:author :name] "Testando")
 
 (assoc-in book [:title] "Test")
+
+(def website {:clojure-cookbook {:hits 1236}})
+
+(def person {:name "Jhonny Doe" :age 28})
+
+(update-in website [:clojure-cookbook :hits] + 101)
+
+(update-in person [:age] + 10)
+
+(update-in person [:name] str "testing")
+
+(update-in {} [:author :residence] assoc :country "USA")
+
+(def retail-data (atom {:customers [{:id 123 :name "Luke"}
+                                    {:id 321 :name "Ryan"}]
+                        :orders [{:sku "Q2M9" :customer 123 :qty 4}
+                                 {:sku "43XP" :customer 321 :qty 1}]}))
+
+(swap! retail-data update-in [:orders] conj {:sku "9QED" :customer 321 :qty 2})
+
+;You’d like to use a value that isn’t a simple primitive type as a lookup key in a map.
