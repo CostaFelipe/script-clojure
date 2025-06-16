@@ -319,3 +319,30 @@
 (swap! retail-data update-in [:orders] conj {:sku "9QED" :customer 321 :qty 2})
 
 ;You’d like to use a value that isn’t a simple primitive type as a lookup key in a map.
+(def chessboard {[:a 5] [:white :king]
+                 [:a 4] [:white :pawn]
+                 [:d 4] [:black :king]})
+
+(defn move [board source dest]
+  (-> board (dissoc source) (assoc dest (board source))))
+
+(move chessboard [:a 5] [:a 4])
+
+(def plus-two (partial + 2))
+(def plus-three (partial + 3))
+(def weight-map {plus-two 1.0
+                 plus-three 0.8})
+
+(defn apply-weighted [weight-map f & args]
+  (* (get weight-map f 1.0) (apply f args)))
+
+(apply-weighted weight-map plus-two 2)
+
+(apply-weighted weight-map plus-two 10)
+
+(apply-weighted weight-map plus-three 1)
+
+(apply-weighted weight-map plus-three 5)
+
+;You want to treat the contents of a map as a sequence of entries. Alternatively, you want
+;to convert a sequence of entries back into a map.
