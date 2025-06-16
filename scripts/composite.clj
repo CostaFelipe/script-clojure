@@ -346,3 +346,33 @@
 
 ;You want to treat the contents of a map as a sequence of entries. Alternatively, you want
 ;to convert a sequence of entries back into a map.
+
+(seq {:a 1 :b 2 :c 3 :d 4})
+
+(def m {:a 1 :b 2})
+
+(conj m [:c 3])
+
+(conj m {:d 5})
+
+(into {} [[:a 1] [:b 2] [:c 3]])
+
+(zipmap [:a :b :c] [1 2 3])
+
+(def test-map {:name "Jhonny Doe"})
+
+(into test-map [[:age 29]])
+
+(seq (hash-map :a 1 :b 2 :c 3 :d 4))
+
+(seq (sorted-map :a 1 :b 2 :c 3 :d 4))
+
+(def entry (first {:a 1 :b 2}))
+
+(class entry)
+
+(key entry)
+
+(val entry)
+
+;;You’d like to apply a transformation function to the keys or the values of a map.
