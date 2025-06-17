@@ -503,3 +503,41 @@
 (map str (take (count "Ana") (rand-str-seq "ana")))
 
 (take 10 (distinct (rand-int-seq 10)))
+
+;You have a collection and you want to determine if it holds one of several possible values.
+
+(some #{1 2} (range 10))
+
+(some #{10} (range 10))
+
+(if (some #{nil} [1 2 nil 3])
+  ::found
+  ::not_found)
+
+(if (some #{1 3} [1 2 nil 3])
+  ::found
+  ::not_found)
+
+
+(if (some #{false} [1 2 false 3])
+  ::found
+  ::not_found)
+
+(if (some #{2 false} [1 2 false 3])
+  ::found
+  ::not_found)
+
+(if (some nil? [nil false])
+  ::found
+  ::not_found)
+
+(if (some false? [nil false])
+  ::found
+  ::not_found)
+
+(if (some #(or (false? %)
+               (nil? %)) [nil false])
+  ::found
+  ::not_found)
+
+;Implementing Custom Data Structures: Red-Black Trees—Part I
