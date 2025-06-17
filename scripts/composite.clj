@@ -403,3 +403,17 @@
 
 ;You would like to create a map-like data structure that implements a multimap-like
 ;interface in Clojure.
+(defprotocol MultiAssociative
+  (insert [m key value] "Insert a value into a MultiAssociative")
+  (delete [m key value] "Remove a value from a MultiAssociative")
+  (get-all [m key] "Returns a set of all values stored at key in a
+                    MultiAssociative. Returns the empty set if there
+                    are no values."))
+
+(defn- value-set? [v]
+  (and (set? v) (::multi-value (meta v))))
+
+(defn value-set [& items]
+  (if (= 1 (count items))
+    (first items)
+    (with-meta (set items) {::multi-value true})))
