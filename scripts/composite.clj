@@ -501,3 +501,5 @@
 (take 10 (rand-int-seq 10))
 
 (map str (take (count "Ana") (rand-str-seq "ana")))
+
+(take 10 (distinct (rand-int-seq 10)))
