@@ -89,7 +89,7 @@
 
 (v 2)
 
-(get [:a :b :c ] 5)
+(get [:a :b :c] 5)
 
 (get [:a :b :c :d] 5 :not-found)
 
@@ -180,11 +180,11 @@
                           #{:yellow :blue :red})
 
 (set/difference #{:red :white :blue :yellow}
-                        #{:red :blue}
-                        #{:white})
+                #{:red :blue}
+                #{:white})
 
 (set/subset? #{:blue :white}
-                     #{:red :white :blue})
+             #{:red :white :blue})
 
 (set/subset? #{:blue :black} #{:red :white :blue})
 
@@ -204,7 +204,7 @@
 (sorted-map :key1 "val1" :key2 "val2")
 
 (sorted-map-by #(< (count %1) (count %2))
-          "pigs" 14
+               "pigs" 14
                "horses" 2
                "elephants" 1
                "manatees" 3)
@@ -439,3 +439,65 @@
 (def Ted {:loves #{:clojure :lisp :scheme} :hates #{:algol :basic :c :c++ :fortran}})
 
 (merge-with clojure.set/intersection Alice Bob Ted)
+
+(defn deep-merge [& maps]
+  (apply merge-with deep-merge maps))
+
+(deep-merge {:foo {:bar {:baz 1}}}
+            {:foo {:bar {:qux 42}}})
+
+;You want to compare two values according to some comparison function, or you want
+;to sort a collection by comparing all the items in it.
+
+(compare 5 2)
+
+(compare 0.5 1)
+
+(compare (/ 1 4) 0.25)
+
+(compare "brewer" "aardvark")
+
+(apply str (sort "The quick brown fox jumped over the lazy dog"))
+
+(sort > [1 4 3 2])
+
+(sort < [100 2 3 4 0])
+
+(sort #(< (count %1) (count %2)) ["z" "yy" "zzz" "a" "bb" "ccc"])
+
+(def people [{:name "Luke" :role :author}
+             {:name "Ryan" :role :author}
+             {:name "John" :role :reviewer}
+             {:name "Travis" :role :reviewer}
+             {:name "Tom" :role :reviewer}
+             {:name "Meghan" :role :editor}])
+
+(sort #(compare (:name %1) (:name %2)) people)
+
+(defn role-review [p]
+  (= (:role p) :reviewer))
+
+(filter role-review people)
+
+(sort-by :name people)
+
+(sort [[2 1] [1] [1 2] [1 1 1] [3] [2]])
+
+;You have a sequence of elements and you want to remove any duplicates, while possibly
+;preserving the order of elements.
+
+(set [:a :a :g :a :b :g])
+
+(distinct [:a :a :g :a :b :g])
+
+(defn rand-int-seq [n]
+  (repeatedly  #(rand-int n)))
+
+(defn rand-str-seq [n]
+  (repeatedly #(rand-nth n)))
+
+(set (take 10 (rand-int-seq 10)))
+
+(take 10 (rand-int-seq 10))
+
+(map str (take (count "Ana") (rand-str-seq "ana")))
