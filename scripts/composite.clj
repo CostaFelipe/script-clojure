@@ -539,5 +539,3 @@
                (nil? %)) [nil false])
   ::found
   ::not_found)
-
-;Implementing Custom Data Structures: Red-Black Trees—Part I
