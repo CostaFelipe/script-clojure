@@ -417,3 +417,25 @@
   (if (= 1 (count items))
     (first items)
     (with-meta (set items) {::multi-value true})))
+
+;;You have two or more maps you wish to combine to produce a single map.
+(def arizona-bird-counts {:cactus-wren 8})
+(def florida-bird-counts {:gull 20 :pelican 14})
+
+(merge florida-bird-counts arizona-bird-counts)
+
+(def florida-bird-counts {:gull 20 :pelican 1 :egret 4})
+(def california-bird-counts {:gull 12 :pelican 4 :jay 3})
+
+(merge-with + california-bird-counts florida-bird-counts)
+
+(def votes-am {:vanilla 3 :chocolate 5})
+(def votes-pm {:vanilla 4 :neapoliton 2})
+
+(merge votes-am votes-pm)
+
+(def Alice {:loves #{:clojure :lisp :scheme} :hates #{:fortran :c :c++}})
+(def Bob {:loves #{:clojure :scheme} :hates #{:c :c++ :algol}})
+(def Ted {:loves #{:clojure :lisp :scheme} :hates #{:algol :basic :c :c++ :fortran}})
+
+(merge-with clojure.set/intersection Alice Bob Ted)
