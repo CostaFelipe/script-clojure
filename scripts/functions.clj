@@ -107,3 +107,37 @@
 (factorial 1)
 (factorial 3)
 (factorial 7)
+
+(defn grow [name direction]
+  (if (= direction :small)
+    (str name " is growing smaller")
+    (str name " is growing bigger")))
+
+(grow "Alice" :small)
+
+(grow "Marcus" :big)
+
+(partial grow "Jhonny")
+
+((partial grow "Peter") :small)
+
+(defn toggle-grow [direction]
+  (if (= direction :small) :big :small))
+
+(toggle-grow :big)
+
+(toggle-grow :small)
+
+(defn oh-my [direction]
+  (str "Oh My! You are growing " direction))
+
+(oh-my (toggle-grow :small))
+
+(oh-my (toggle-grow :big))
+
+(defn surprise [direction]
+  ((comp oh-my toggle-grow) direction))
+
+(surprise :small)
+
+(surprise :big)
