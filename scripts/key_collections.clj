@@ -96,7 +96,7 @@
 
 (rest [1 2 3 4 5 6 7 8 9])
 
-(next [1 2 3 4 5 6 7 8 9] )
+(next [1 2 3 4 5 6 7 8 9])
 
 ;Key Operations on Collections and Sequences
 
@@ -150,4 +150,78 @@
 
 (get (Language. "Elixir" "José Valim") :name)
 
-(defrecord numbers [index middle ring pinky thumb])
+(defrecord Numbers [index middle ring pinky thumb])
+
+(get (Numbers. 3 4 3.5 2 2) :index)
+
+;assoc
+
+(assoc {:a 1} :b 2)
+
+(assoc {:a 1 :b 45 :c 3} :b 2)
+
+(defrecord Hand [index middle ring pinky thumb])
+(assoc (Hand. 3 4 3.5 2 2) :index 3.75)
+
+;;vector
+(assoc [1 2 3 4] 5 6)
+
+(assoc [1 2 3] 3 4)
+
+;dissoc
+(dissoc {:a 1 :b 2 :c 3} :b)
+
+(dissoc {:a 1 :b 14 :c 390 :d 75 :e 2 :f 51} :b :c :e)
+
+(defrecord Hand1 [index middle ring pinky thumb])
+
+(dissoc (Hand1. 3 4 3.5 2 2) :ring)
+
+;;first
+
+(first (range 10))
+
+(first [:floor :piano :seagul])
+
+(first [])
+
+;rest
+(rest [13 1 16 -4])
+
+(rest '(:french-fry))
+
+(if (rest '("stugg"))
+  (println "Does this print?"))
+
+;;empty?
+(empty? [])
+
+(empty? '(1 2 3))
+
+;;empty
+
+(if (empty [1 2 3])
+  "It's empty"
+  "It's not empty")
+
+(empty [1 2 3])
+
+(empty {:a 1 :b 2})
+
+(empty #{1 2 3})
+
+(empty '(:one :two :three))
+
+;not-empty
+(not-empty '(:nice :elephants :children))
+
+(not-empty [])
+
+(not-empty '())
+
+;contains?
+(contains? {:a 1 :b 2 :c 3} :c)
+
+(contains? #{:a :b :c} :d)
+
+;(contains? '(1 2 3) 0) lista não suporta
