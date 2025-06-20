@@ -261,3 +261,41 @@
 
 
 (map #(str "Team " (name (key %)) " has scored " (val %)) score)
+
+;reduce
+(def numeros (range 1 10))
+
+(reduce + numeros)
+
+(reduce + (vals score))
+
+(reduce + 10 (vals score))
+
+;filter, filterv
+(filter even? [0 1 2 3 4 5 6])
+
+(filter even? (range 0 20))
+
+(filter #(< (count %) 5) ["Paul" "Celery" "Computer" "Clojure" "Elixir" "Rudd"])
+
+(filter #{:nothing :something nil}
+        [:nothing :something :things :someone nil false :pigeons])
+
+(filter #{2 5} [1 2 3 4 5])
+
+;remove
+(remove even? (range 1 10))
+
+(remove {:a 1 :b 2} [:h :k :z :b :s])
+
+(remove #{:nothing :something nil false true}
+        [:nothing :something :things :someone nil false :pigeons true])
+
+;sort, sort-by
+(sort [0.0 -1 1.3 nil 0.18 7])
+
+(sort ["The case matters" "Lexicographi ordering" "The case matters" nil "%%"])
+
+(sort [[1 "banana"] [1 "apple"] [0 "grapefruit"] [3 "strawberry"]])
+
+(sort [5 1.0 true "abc"])
