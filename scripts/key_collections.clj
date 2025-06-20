@@ -198,6 +198,7 @@
 
 (empty? '(1 2 3))
 
+
 ;;empty
 
 (if (empty [1 2 3])
@@ -225,3 +226,38 @@
 (contains? #{:a :b :c} :d)
 
 ;(contains? '(1 2 3) 0) lista não suporta
+
+;some
+(some odd? [1 2 3 4 5])
+
+(some even? [1 3 5 7])
+
+(some #(if (even? %) %) [1 3 4 5 6])
+
+(some {:a 1 :b 2} [:h :t :b :y])
+
+(some #{19} (range 20))
+
+;every?
+(every? even? (range 0 10 2))
+
+(every? {:a 1 :b 2 :c 3} [:a :b :c])
+
+(every? #{2 3 4} [2 3 4 2 3 4])
+
+;map, mapv
+(def numbers
+  (range 1 11))
+
+(map (partial * 2) numbers)
+
+(mapv (partial * 1) numbers)
+
+(def score
+  {:clojure 9.0
+   :golang 8.5
+   :elixir 9.0
+   :scala 8.0})
+
+
+(map #(str "Team " (name (key %)) " has scored " (val %)) score)
