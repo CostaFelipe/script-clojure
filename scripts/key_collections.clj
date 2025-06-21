@@ -301,10 +301,10 @@
 (sort [5 1.0 true "abc"])
 
 (letfn [(strings-before-numbers [x y]
-                                (cond
-                                  (and (string? x) (number? y)) -1
-                                  (and (number? x) (string? y)) 1
-                                  :else (compare x y)))]
+          (cond
+            (and (string? x) (number? y)) -1
+            (and (number? x) (string? y)) 1
+            :else (compare x y)))]
   (sort strings-before-numbers [1 0.0 nil "abc"]))
 
 (sort (comp - compare) ["charlie" "delta" "alpha" "bravo"])
@@ -324,3 +324,21 @@
   (* 2 value))
 
 (take 10 (iterate multiply-by-two 1))
+
+;get-in
+(def family
+  {:dad {:shirt 5
+         :pants 6
+         :shoes 4}
+   :mom {:dress {:work 6
+                 :casual 7}}
+   :son {:toy 5
+         :homework 1}})
+
+(get-in family [:mom :dress :work])
+
+(get-in family [:dad :shirt])
+
+(def locations [:office :home :school])
+
+(get-in locations [1])
