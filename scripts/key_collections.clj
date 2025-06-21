@@ -299,3 +299,20 @@
 (sort [[1 "banana"] [1 "apple"] [0 "grapefruit"] [3 "strawberry"]])
 
 (sort [5 1.0 true "abc"])
+
+(letfn [(strings-before-numbers [x y]
+                                (cond
+                                  (and (string? x) (number? y)) -1
+                                  (and (number? x) (string? y)) 1
+                                  :else (compare x y)))]
+  (sort strings-before-numbers [1 0.0 nil "abc"]))
+
+(sort (comp - compare) ["charlie" "delta" "alpha" "bravo"])
+
+;sort-by
+(sort-by :last [{:first "Fred" :last "Mertz"}
+                {:first "Lucy" :last "Ricardo"}
+                {:first "Ricky" :last "Ricardo"}
+                {:first "Ethel" :last  "Mertz"}])
+
+(sort-by (juxt count clojure.string/lower-case) ["Alpha" "bravo" "Charlie" "Delta" "echo"])
