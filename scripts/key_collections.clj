@@ -316,3 +316,11 @@
                 {:first "Ethel" :last  "Mertz"}])
 
 (sort-by (juxt count clojure.string/lower-case) ["Alpha" "bravo" "Charlie" "Delta" "echo"])
+
+;iterate
+(take 5 (iterate inc 1))
+
+(defn multiply-by-two [value]
+  (* 2 value))
+
+(take 10 (iterate multiply-by-two 1))
