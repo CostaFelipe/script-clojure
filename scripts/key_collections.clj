@@ -384,3 +384,25 @@
 (select-keys family1 [:mom])
 
 (select-keys family1 [:mom :son])
+
+;take
+(take 3 [1 2 3 4 5])
+
+(type (take 3 [1 2 3 4 5]))
+
+(take 5 [1 2 3])
+
+(take 3 nil)
+
+;drop
+(drop 3 '(0 1 2 3 4 5 6 7))
+
+(drop 2 [1 2])
+
+(drop 2 nil)
+
+;take-while
+(take-while #(< % 5) (range))
+
+;drop-while
+(drop-while #(< % 5) (range 10))
