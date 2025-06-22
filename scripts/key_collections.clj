@@ -406,3 +406,13 @@
 
 ;drop-while
 (drop-while #(< % 5) (range 10))
+
+;Transducers
+(->> (range 10)
+     (map inc)
+     (filter even?)
+     (take 3)
+     (into []))
+
+(def xf (comp (map inc) (filter even?) (take 3)))
+(into [] xf (range 10))
