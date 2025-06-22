@@ -361,3 +361,10 @@
 (def locations1 [:office :home :school])
 
 (update-in locations1 [2] #(keyword (str "high-" (name %))))
+
+;;assoc-in
+(assoc-in family1 [:son :crayon] 3)
+
+(assoc-in locations1 [3] :high-school)
+
+;keys
