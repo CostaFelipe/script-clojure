@@ -368,3 +368,19 @@
 (assoc-in locations1 [3] :high-school)
 
 ;keys
+(keys {1 "one" 2 "two" 3 "three"})
+
+(keys (Hand. 2 4 3 1 2))
+
+;vals
+(vals {:meows 20 :barks 2 :moos 5})
+
+(vals (Hand. 1 2 3 4 5))
+
+;select-keys
+
+(select-keys family1 [:dad])
+
+(select-keys family1 [:mom])
+
+(select-keys family1 [:mom :son])
