@@ -342,3 +342,22 @@
 (def locations [:office :home :school])
 
 (get-in locations [1])
+
+(def family1 {:dad {:shirt 5
+                    :pants 6
+                    :shoes 4}
+              :mom {:dress {:work 6
+                            :casual 7}
+                    :book 3}
+              :son {:toy 5
+                    :homework 1}})
+
+(update-in family1 [:dad :pants] inc)
+
+(def usuario {:nome "William Doe" :idade 28 :email "doe@gmail.com"})
+
+(assoc usuario :nome "José")
+
+(def locations1 [:office :home :school])
+
+(update-in locations1 [2] #(keyword (str "high-" (name %))))
