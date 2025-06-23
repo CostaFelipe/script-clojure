@@ -416,3 +416,37 @@
 
 (def xf (comp (map inc) (filter even?) (take 3)))
 (into [] xf (range 10))
+
+;atividades
+;;1)
+(def users ["田中太郎" "佐藤花子" "鈴木次郎" "高橋一郎" "渡辺美咲"])
+
+(def first-three-users (take 3 users))
+
+first-three-users
+
+;;2)
+(def page-data [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15])
+
+(def skip-first-page (drop 1 page-data))
+
+skip-first-page
+
+(def second-page (->> page-data
+                      (drop 2)
+                      (take 2)))
+
+second-page
+
+;;3)
+(def player {:name "プレイヤー1" :level 5 :exp 1200 :hp 100 :items ["剣" "盾"]})
+
+(def leveled-up (update player :level inc))
+
+(def healed (update player :hp + 50))
+
+(def with-potion (update player  :items conj "ポーション"))
+
+leveled-up
+healed
+with-potion
