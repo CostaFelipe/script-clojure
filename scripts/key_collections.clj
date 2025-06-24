@@ -554,3 +554,48 @@ greater-than-five
 names
 with-raise
 introductions
+
+;;9)
+(reduce + [1 2 3 4 5])
+
+(reduce str ["Hello" " " "world"])
+
+(def orders [{:id 1 :amount 1000 :status "completed"}
+             {:id 2 :amount 1500 :status "completed"}
+             {:id 3 :amount 800 :status "pending"}
+             {:id 4 :amount 2000 :status "completed"}])
+
+
+(def total-completed
+  (->> orders
+       (filter #(= (:status %) "completed"))
+       (map :amount)
+       (reduce +)))
+
+(def order-ids-string
+  (->> orders
+       (map :id)
+       (map str)
+       (reduce str "例: ")))
+
+total-completed
+order-ids-string
+
+;;10)
+(group-by even? [1 2 3 4 5 6])
+
+(group-by count ["a" "bb" "ccc" "dd"])
+
+(def employees
+  [{:name "田中" :department "engineering" :level "senior"}
+    {:name "佐藤" :department "sales" :level "junior"}
+    {:name "鈴木" :department "engineering" :level "junior"}
+    {:name "高橋" :department "marketing" :level "senior"}
+    {:name "渡辺" :department "sales" :level "senior"}])
+
+(def by-department (group-by #(:department %) employees))
+
+(def by-level (group-by #(:level %) employees))
+
+by-department
+by-level
