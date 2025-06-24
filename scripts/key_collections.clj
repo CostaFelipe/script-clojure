@@ -533,3 +533,21 @@ with-i
 
 odd-numbers
 greater-than-five
+
+;;8)
+
+(map inc [1 2 3 4 5])
+
+(map #(* % 2) [1 2 3 4 5])
+
+(def users
+  [{:name "田中" :age 25 :salary 400000M}
+   {:name "佐藤" :age 30 :salary 500000M}
+   {:name "鈴木" :age 28 :salary 450000M}])
+
+(def names (map :name users))
+
+(def with-raise (map #(update % :salary * 1.1M) users))
+
+names
+with-raise
