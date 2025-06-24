@@ -247,12 +247,12 @@
 (every? #{2 3 4} [2 3 4 2 3 4])
 
 ;map, mapv
-(def numbers
+(def numbers1
   (range 1 11))
 
-(map (partial * 2) numbers)
+(map (partial * 2) numbers1)
 
-(mapv (partial * 1) numbers)
+(mapv (partial * 1) numbers1)
 
 (def score
   {:clojure 9.0
@@ -504,10 +504,32 @@ with-settings
 
 (def expensive-products (filter #(> (:price %) 500) products))
 
+(defn search-category-electronics [product]
+  (= (:category product) "electronics"))
+
 (def electronics (filter #(= (:category %) "electronics") products))
+;or
+(def electronics1 (filter search-category-electronics products))
 
 (def with-i (filter #(str/includes? (:name %) "i") products))
 
 expensive-products
 electronics
+electronics1
 with-i
+
+;;7)
+(remove even? [1 2 3 4 5 6 7 8])
+
+(defn is_divisible_by_3? [number]
+  (= (rem number 3) 0))
+
+(remove is_divisible_by_3? [10 15 30 89 101])
+
+(def numbers [1 2 3 4 5 6 7 8 9 10])
+
+(def odd-numbers (remove odd? numbers))
+(def greater-than-five (remove #(< % 5) numbers))
+
+odd-numbers
+greater-than-five
