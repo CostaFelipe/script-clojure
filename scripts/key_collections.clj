@@ -599,3 +599,15 @@ order-ids-string
 
 by-department
 by-level
+
+;;11)
+(def users-db
+  [{:id 1 :name "田中太郎" :email "tanaka@example.com" :role "admin" :active true :created-at "2023-01-15"}
+   {:id 2 :name "佐藤花子" :email "sato@example.com" :role "user" :active true :created-at "2023-02-20"}
+   {:id 3 :name "鈴木次郎" :email "suzuki@example.com" :role "user" :active false :created-at "2023-01-10"}
+   {:id 4 :name "高橋一郎" :email "takahashi@example.com" :role "moderator" :active true :created-at "2023-03-05"}])
+
+(defn paginate [items page-size page-number]
+  (take page-size (drop (* page-size (dec page-number)) items)))
+
+(paginate users-db 2 1)
