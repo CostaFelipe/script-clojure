@@ -549,5 +549,8 @@ greater-than-five
 
 (def with-raise (map #(update % :salary * 1.1M) users))
 
+(def introductions (map #(str (:name %) "さん " "("(:age %)"歳)") users))
+
 names
 with-raise
+introductions
