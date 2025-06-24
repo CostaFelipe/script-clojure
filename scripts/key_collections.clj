@@ -1,3 +1,4 @@
+(require '[clojure.string :as str])
 ;maps
 
 {:languages "Clojure" :creator "Rich Hickey"}
@@ -450,3 +451,63 @@ second-page
 leveled-up
 healed
 with-potion
+
+;;4)
+(def data {:user {:profile {:name "田中" :age 25}}})
+
+(update-in data [:user :profile :age] inc)
+
+(assoc-in data [:user :profile :name] "田中太郎")
+
+(def game-state
+  {:player {:stats {:hp 100 :mp 50 :level 5}
+            :inventory {:items ["剣" "盾"] :gold 1000}}
+   :enemies [{:name "スライム" :hp 30} {:name "ゴブリン" :hp 50}]})
+
+(def hp-recovered (update-in game-state [:player :stats :hp] inc))
+
+(def gold-increased (update-in game-state [:player :inventory :gold] + 500))
+
+(def enemy-damaged (update-in game-state [:enemies 0 :hp] - 10))
+
+(get-in game-state [:enemies 0])
+
+hp-recovered
+gold-increased
+enemy-damaged
+
+;;5)
+(assoc {:a 1} :b 2)
+
+(assoc-in {} [:a :b :c] "deep value")
+
+(def user-profile {:id 1 :name "田中太郎"})
+
+(def with-email (assoc user-profile :email "agatsuma@yahoo.com"))
+
+(def with-settings (assoc-in user-profile [:settings] {:theme "dark" :notifications true}))
+
+with-email
+with-settings
+
+;;6)
+(filter even? [1 2 3 4 5 6 7 8])
+
+(filter #(> % 10) [5 12 8 15 3 20])
+
+(def products
+  [{:name "iPhone" :price 100000 :category "electronics"}
+   {:name "MacBook" :price 200000 :category "electronics"}
+   {:name "コーヒー" :price 500 :category "food"}
+   {:name "本" :price 1500 :category "books"}
+   {:name "iPad" :price 80000 :category "electronics"}])
+
+(def expensive-products (filter #(> (:price %) 500) products))
+
+(def electronics (filter #(= (:category %) "electronics") products))
+
+(def with-i (filter #(str/includes? (:name %) "i") products))
+
+expensive-products
+electronics
+with-i
