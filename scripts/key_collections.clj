@@ -549,7 +549,7 @@ greater-than-five
 
 (def with-raise (map #(update % :salary * 1.1M) users))
 
-(def introductions (map #(str (:name %) "さん " "("(:age %)"歳)") users))
+(def introductions (map #(str (:name %) "さん " "(" (:age %) "歳)") users))
 
 names
 with-raise
@@ -575,11 +575,13 @@ introductions
 (def order-ids-string
   (->> orders
        (map :id)
-       (map str)
-       (reduce str "例: ")))
+       (str/join ",")
+       (reduce str "例： ")))
 
 total-completed
 order-ids-string
+
+(apply str (interpose ", " ["Felipe" "de" "Lima"]))
 
 ;;10)
 (group-by even? [1 2 3 4 5 6])
@@ -588,10 +590,10 @@ order-ids-string
 
 (def employees
   [{:name "田中" :department "engineering" :level "senior"}
-    {:name "佐藤" :department "sales" :level "junior"}
-    {:name "鈴木" :department "engineering" :level "junior"}
-    {:name "高橋" :department "marketing" :level "senior"}
-    {:name "渡辺" :department "sales" :level "senior"}])
+   {:name "佐藤" :department "sales" :level "junior"}
+   {:name "鈴木" :department "engineering" :level "junior"}
+   {:name "高橋" :department "marketing" :level "senior"}
+   {:name "渡辺" :department "sales" :level "senior"}])
 
 (def by-department (group-by #(:department %) employees))
 
@@ -601,13 +603,18 @@ by-department
 by-level
 
 ;;11)
-(def users-db
+(def data-base
   [{:id 1 :name "田中太郎" :email "tanaka@example.com" :role "admin" :active true :created-at "2023-01-15"}
    {:id 2 :name "佐藤花子" :email "sato@example.com" :role "user" :active true :created-at "2023-02-20"}
    {:id 3 :name "鈴木次郎" :email "suzuki@example.com" :role "user" :active false :created-at "2023-01-10"}
    {:id 4 :name "高橋一郎" :email "takahashi@example.com" :role "moderator" :active true :created-at "2023-03-05"}])
 
-(defn paginate [items page-size page-number]
-  (take page-size (drop (* page-size (dec page-number)) items)))
+(defn search-name? [user term]
+  (str/includes? (str :name user) term))
 
-(paginate users-db 2 1)
+(defn fomart [u]
+  (select-keys u [:name :email]))
+
+(def display (map fomart data-base))
+
+display
