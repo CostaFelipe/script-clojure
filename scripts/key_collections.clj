@@ -609,8 +609,8 @@ by-level
    {:id 3 :name "鈴木次郎" :email "suzuki@example.com" :role "user" :active false :created-at "2023-01-10"}
    {:id 4 :name "高橋一郎" :email "takahashi@example.com" :role "moderator" :active true :created-at "2023-03-05"}])
 
-(defn search-name? [user term]
-  (str/includes? (str :name user) term))
+(defn search-name [user term]
+  (filter #(str/includes? (str :name %) term) user))
 
 (defn fomart [u]
   (select-keys u [:name :email]))
@@ -618,3 +618,4 @@ by-level
 (def display (map fomart data-base))
 
 display
+(search-name data-base "高橋")
