@@ -602,7 +602,7 @@ order-ids-string
 by-department
 by-level
 
-;;11)
+;;11)clo
 (def data-base
   [{:id 1 :name "田中太郎" :email "tanaka@example.com" :role "admin" :active true :created-at "2023-01-15"}
    {:id 2 :name "佐藤花子" :email "sato@example.com" :role "user" :active true :created-at "2023-02-20"}
