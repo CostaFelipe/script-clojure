@@ -171,3 +171,40 @@
 (who_are_you "Elixir")
 (who_are_you 1001)
 (who_are_you true)
+
+(defmulti eat-mushroom (fn [height]
+                         (if (< height 3)
+                           :grow
+                           :shrink)))
+
+(defmethod eat-mushroom :grow [_]
+  "Eat the right side to grow.")
+
+(defmethod eat-mushroom :shrink [_]
+  "Eat the left side to shrink.")
+
+(eat-mushroom 1)
+(eat-mushroom 9)
+
+(defprotocol BigMushroom [eat-mushroom [this]])
+
+(extend-protocol BigMushroom
+  java.lang.String
+  (eat-mushroom [this]
+    (str (.toUpperCase this) " mmmm tasty"))
+  clojure.lang.Keyword
+  (eat-mushroom [this]
+    (case this
+      :grow "Eat the right side!"
+      :shrink "Eat the left side!"))
+  java.lang.Long
+  (eat-mushroom [this]
+    (if (< this 3)
+      "Eat the right side to grow"
+      "Eat the left side to shrink")))
+
+(eat-mushroom "Big Mushroom")
+
+(eat-mushroom :grow)
+
+(eat-mushroom 101)
