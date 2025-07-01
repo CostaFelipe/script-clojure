@@ -141,3 +141,33 @@
 (surprise :small)
 
 (surprise :big)
+
+;Practical Polymorphism
+(defn who-are-you [input]
+  (cond
+    (= java.lang.String (class input)) "String - Who are you?"
+    (= clojure.lang.Keyword (class input)) "Keyword - Who are you?"
+    (= java.lang.Long (class input)) "Number - Who are you?"))
+
+(who-are-you :keyword)
+(who-are-you "orange")
+(who-are-you 101)
+
+(defmulti who_are_you class)
+
+(defmethod who_are_you java.lang.String [input]
+  (str "String - Who are you? " input))
+
+(defmethod who_are_you clojure.lang.Keyword [input]
+  (str "Keyword - Who are you? " input))
+
+(defmethod who_are_you java.lang.Long [input]
+  (str "Number - Who are you? " input))
+
+(defmethod who_are_you :default [input]
+  (str "I don't know - who are you? " input))
+
+(who_are_you :keyword)
+(who_are_you "Elixir")
+(who_are_you 1001)
+(who_are_you true)
