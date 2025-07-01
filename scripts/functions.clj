@@ -208,3 +208,60 @@
 (eat-mushroom :grow)
 
 (eat-mushroom 101)
+
+(defrecord Mushroom [color height])
+
+(def regular-mushroom (Mushroom. "white and blue polka dots" "2 inches"))
+
+(class regular-mushroom)
+
+(.-color regular-mushroom)
+
+(.-height regular-mushroom)
+
+(defprotocol Edible
+  (bite-right-side [this])
+  (bite-left-side [this]))
+
+(defrecord WMushroom [color height]
+  Edible
+  (bite-right-side [this]
+    (str "The " color "bite makes you grow bigger"))
+  (bite-left-side [this]
+    (str "The " color "bite makes you grow smaller")))
+
+(defrecord RegularMushroom [color height]
+  Edible
+  (bite-right-side [this]
+                   (str "The " color " bit tastes bad"))
+  (bite-left-side [this]
+                  (str "The " color " bit tastes bad too")))
+
+(def doe-mushroom (WMushroom. "blue dots" "3 inches"))
+
+(def reg-mushroom (RegularMushroom. "brown" "1 inches"))
+
+(bite-right-side doe-mushroom)
+
+(bite-left-side doe-mushroom)
+
+(bite-right-side reg-mushroom)
+
+(bite-left-side reg-mushroom)
+
+
+(defn bite-right-side [mushroom]
+  (if (= (:type mushroom) "wonderland")
+    "The bite makes you grow bigger"
+    "The bite tastes bad"))
+
+(defn bite-left-side [mushroom]
+  (if (= (:type mushroom) "wonderland")
+    "The bite makes you grow smaller"
+    "The bite tastes bad too"))
+
+(bite-right-side {:type "wonderland"})
+
+(bite-left-side {:type "wonderland"})
+
+(bite-left-side {:type "regular"})
