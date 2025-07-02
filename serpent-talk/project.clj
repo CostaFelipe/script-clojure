@@ -5,4 +5,5 @@
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [camel-snake-kebab "0.4.3"]]
-  :repl-options {:init-ns serpent-talk.talk})
+  :repl-options {:init-ns serpent-talk.talk}
+  :main serpent-talk.talk)
