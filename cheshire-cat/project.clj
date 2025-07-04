@@ -8,7 +8,8 @@
                  [cheshire "6.0.0"]
                  [ring/ring-json "0.5.1"]
                  [org.clojure/clojurescript "1.12.42"]]
-  :plugins [[lein-ring "0.12.5"]]
+  :plugins [[lein-ring "0.12.5"]
+            [lein-cljsbuild "1.1.8"]]
   :ring {:handler cheshire-cat.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
