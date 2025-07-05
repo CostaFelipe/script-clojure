@@ -13,4 +13,13 @@
   :ring {:handler cheshire-cat.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-mock "0.3.2"]]}})
+                        [ring/ring-mock "0.3.2"]]}}
+  :cljsbuild  {:builds [{:id "main"
+                         :source-paths ["src"]
+                         :compiler {:output-to "resources/public/js/main.js"
+                                    :output-dir "resources/public/js/out"
+                                    :optimizations :none
+                                    :asset-path "js/out"
+                                    :main cheshire_cat.core
+                                    :pretty-print true
+                                    :source-map true}}]})

@@ -8,6 +8,8 @@
 
 (defroutes app-routes
   (GET "/" []
+    "Hello World")
+  (GET "/hello" []
     {:status 200
      :head {"Content-Type" "application/json; charset=utf-8"}
      :body "Hello World"})
