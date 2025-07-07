@@ -43,13 +43,13 @@
 (def usuario {:name "Jhon doe" :email "teste@gmail.com"})
 
 (defn salvando-usuario [usuario]
-  (println "Salvando usuario" (:name usuario)) )
+  (println "Salvando usuario" (:name usuario)))
 
 (defn registrar-usuario [usuario]
   (when (:email usuario)
-     (println "Enviando email de boas vindas")
-     (println (salvando-usuario usuario))
-     true))
+    (println "Enviando email de boas vindas")
+    (println (salvando-usuario usuario))
+    true))
 
 (registrar-usuario usuario)
 
@@ -60,8 +60,7 @@
   (cond
     (> number 0) (println number "is positive")
     (< number 0) (println number "is negative")
-    :else (println "is neither positive nor negative")
-    ))
+    :else (println "is neither positive nor negative")))
 
 (defn classificar-temperatura [temp]
   (cond
@@ -69,8 +68,7 @@
     (< temp 15) "Frio"
     (< temp 25) "Agradável"
     (< temp 35) "Quente"
-    :else "Muito Quente"
-    ))
+    :else "Muito Quente"))
 
 (defn avaliar-desempenho [nota]
   (cond
@@ -96,8 +94,7 @@
     8 "eight"
     9 "nine"
     10 "ten"
-    "I don't know")
-  )
+    "I don't know"))
 
 (defn categoria-produto [codigo]
   (case (first (str/upper-case codigo))
@@ -109,7 +106,29 @@
 
 (categoria-produto "Alimentos")
 
- (comment
-   comment
-     (verificar-idade 17)
-     (inicializar-sistema))
+(comment
+  comment
+  (verificar-idade 17)
+  (inicializar-sistema))
+
+;if
+
+(defn member? [point]
+  (= point true))
+
+(defn calcular-desconto [valor member?]
+  (if member?
+    (* valor 0.9)
+    valor))
+
+(calcular-desconto 100 (member? true))
+
+;when
+(def produto {:id 1 :quantidade 10 :preco 1.99})
+(def pedido [produto])
+
+(defn pedido-valido? [p]
+  (not-empty p))
+
+(defn enviar-confirmacao [p]
+  (str "email enviado" p))
