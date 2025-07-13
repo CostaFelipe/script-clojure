@@ -38,3 +38,58 @@ sum
                         (if (empty? acc) name (str acc ", " name))) ""
                       (map :name users)))
 all-name
+
+;; TODO: Calcule o salário total de todos os usuários
+(def total-salary (reduce + (map :salary users)))
+total-salary
+
+(def person {:name "Carlos" :age 35})
+
+;; TODO: Adicione um campo :city com valor "São Paulo"
+(def with-city (assoc person :city "São Paulo"))
+with-city
+
+;; TODO: Atualize a idade para ser 1 ano maior
+(def one-year-older (update person :age inc))
+one-year-older
+
+;; TODO: Adicione o campo :job com valor "Programador"
+(def with-job (assoc person :job "Programador"))
+with-job
+
+(def alphabet (seq "abcdefghijklmnopqrstuvwxyz"))
+
+;; TODO: Pegue as primeiras 5 letras
+(def first-five (take 5 alphabet))
+first-five
+
+;; TODO: Descarte as primeiras 20 letras e pegue o resto
+(def last-letters (drop 20 alphabet))
+last-letters
+
+;; TODO: Pegue letras enquanto forem anteriores a 'j' no alfabeto
+(def before-j (take-while #(not (= % \j)) alphabet))
+before-j
+
+;; TODO: Descarte letras enquanto forem anteriores a 'x' no alfabeto
+(def last-few (drop-while #(not (= % \x)) alphabet))
+last-few
+
+(def more-users
+  [{:name "Carlos" :department "TI" :salary 450000}
+   {:name "Ana" :department "RH" :salary 380000}
+   {:name "Pedro" :department "TI" :salary 500000}
+   {:name "Maria" :department "Marketing" :salary 420000}
+   {:name "João" :department "RH" :salary 390000}])
+
+;; TODO: Agrupe os usuários por departamento
+(def users-by-department (group-by :department more-users))
+users-by-department
+
+;; TODO: Agrupe os números pela sua paridade (par/ímpar)
+(def users-by-parity (group-by (fn [acc]
+                                   (if (even? (count acc)) :even :odd)) (map :name more-users)))
+users-by-parity
+
+(def numbers-by-parity (group-by (fn [x] (if (even? x) :even :odd)) numbers))
+numbers-by-parity
