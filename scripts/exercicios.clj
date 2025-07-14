@@ -93,3 +93,30 @@ users-by-parity
 
 (def numbers-by-parity (group-by (fn [x] (if (even? x) :even :odd)) numbers))
 numbers-by-parity
+
+;; TODO: Agrupe os usuários originais por faixa salarial (abaixo de 450000 e acima)
+(def users-by-salary (group-by (fn [user]
+                                 (if (> 450000 (:salary user)) "Abaixo de 450000" "Acima de 450000"))
+                               more-users))
+users-by-salary
+
+;; TODO: Crie uma função que dobre um número e depois some 10
+(def double-then-add-10 (comp (partial + 10)))
+double-then-add-10
+
+;; TODO: Crie uma função que filtre apenas usuários com salário acima de 400000
+(def high-earners (partial filter #(> (or (:salary %) 0) 400000)))
+(high-earners more-users)
+
+;; TODO: Crie uma função que receba um nome e retorne uma saudação "Olá, Maria!"
+(def hello (partial str "Hello,"))
+(hello "Maria")
+
+;; TODO: Crie uma função que retorne um vetor com o primeiro e o último elemento de uma coleção
+(def first-and-last (juxt first [1 2 3 4 10]))
+first-and-last
+
+;; TODO: Crie uma função que retorne um mapa com as chaves :min, :max e :count de uma coleção de números
+(def stats (juxt :min :max :count (partial apply min) (partial apply max) (partial count)))
+
+(stats [1 2 3 4 5 6])
