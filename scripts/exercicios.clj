@@ -121,3 +121,22 @@ first-and-last
                  (juxt (partial apply min) (partial apply max) count)))
 
 (stats numbers)
+
+;; TODO: Crie uma função que retorne um vetor com o nome e a idade de um usuário
+(def name-and-age
+  ((juxt :name :age) person))
+
+name-and-age
+
+;; TODO: Use threading macro para transformar uma lista de números:
+;; 1. Filtre apenas os números pares
+;; 2. Multiplique cada um por 3
+;; 3. Pegue apenas os 5 primeiros resultados
+(def processed-numbers
+  (->> [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15]
+       (filter even?)
+       (map (partial * 3))
+       (take 5)
+       ))
+
+processed-numbers
