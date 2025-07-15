@@ -211,3 +211,9 @@
 (mode [:smith :carpenter :doe :smith :doe])
 
 (shuffle [1 2 3 4 5 6])
+
+(def numero 123)
+
+(def colecao (vec (seq (str numero))))
+
+colecao
