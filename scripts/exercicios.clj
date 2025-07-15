@@ -1,3 +1,5 @@
+(require '[clojure.string :as str])
+
 (def users
   [{:name "田中" :age 25 :salary 400000}
    {:name "佐藤" :age 30 :salary 500000}
@@ -140,3 +142,15 @@ name-and-age
        ))
 
 processed-numbers
+
+;; TODO: Use threading macro para processar uma string:
+;; 1. Converta para minúsculas
+;; 2. Substitua espaços por hífens
+;; 3. Pegue apenas os primeiros 10 caracteres
+(def slug
+  (-> "Este é um Titulo de Artigo"
+       (str/lower-case)
+       (str/replace #" " "-")
+       (subs 0 10)))
+
+slug
