@@ -113,10 +113,11 @@ double-then-add-10
 (hello "Maria")
 
 ;; TODO: Crie uma função que retorne um vetor com o primeiro e o último elemento de uma coleção
-(def first-and-last (juxt first [1 2 3 4 10]))
+(def first-and-last ((juxt first last) numbers))
 first-and-last
 
 ;; TODO: Crie uma função que retorne um mapa com as chaves :min, :max e :count de uma coleção de números
-(def stats (juxt :min :max :count (partial apply min) (partial apply max) (partial count)))
+(def stats (comp (partial zipmap [:min :max :count])
+                 (juxt (partial apply min) (partial apply max) count)))
 
-(stats [1 2 3 4 5 6])
+(stats numbers)
