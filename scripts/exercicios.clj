@@ -118,12 +118,6 @@ double-then-add-10
 (def first-and-last ((juxt first last) numbers))
 first-and-last
 
-;; TODO: Crie uma função que retorne um mapa com as chaves :min, :max e :count de uma coleção de números
-(def stats (comp (partial zipmap [:min :max :count])
-                 (juxt (partial apply min) (partial apply max) count)))
-
-(stats numbers)
-
 ;; TODO: Crie uma função que retorne um vetor com o nome e a idade de um usuário
 (def name-and-age
   ((juxt :name :age) person))
@@ -154,3 +148,29 @@ processed-numbers
        (subs 0 10)))
 
 slug
+
+(def keys-k [:a :b :c :d])
+
+(def vals-v [1 2 3 4])
+
+;; TODO: Crie um mapa combinando as chaves com os valores
+(def combined (zipmap keys-k vals-v))
+combined
+
+;; TODO: Crie um mapa onde as chaves são os nomes dos usuários e os valores são suas idades
+(def name-to-age (zipmap (map :name users) (map :age users)))
+name-to-age
+
+;; TODO: Crie uma função que retorne um mapa com as chaves :min, :max e :count de uma coleção de números
+(def stats (comp (partial zipmap [:min :max :count])
+                 (juxt (partial apply min) (partial apply max) count)))
+
+(stats numbers)
+
+;; TODO: Divida a sequência em grupos de 3 elementos
+(def group-of-three (partition 3 numbers))
+group-of-three
+
+;; TODO: Agrupe números consecutivos com o mesmo sinal (positivo/negativo)
+(def by-sign (partition-by #(compare % 0) [1 2 3 -1 -2 0 1 2 -5 -6]))
+by-sign
