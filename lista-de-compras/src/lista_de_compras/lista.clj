@@ -1,8 +1,8 @@
-(ns lista-de-compras.core)
+(ns lista-de-compras.lista)
 
 (defrecord ItemCompra [nome quantidade preco categoria])
 
-(defn criar-lista [] (atom []))
+(defonce criar-lista (atom []))
 
 (defn adicionar-item [lista item]
   (swap! lista conj item))
@@ -14,5 +14,4 @@
     (adicionar-item lista (->ItemCompra "Sabonete" 5 2.50 "Higiene"))
 
     (doseq [item @lista]
-      (println (str (:nome item) " - " (:quantidade item) " x R$ " (:preco item))))
-    ))
+      (println (str (:nome item) " - " (:quantidade item) " x R$ " (:preco item))))))
