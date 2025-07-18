@@ -15,8 +15,8 @@
     (adicionar-item lista (->ItemCompra "Arroz" 2 9.89 "Alimentos"))
     (adicionar-item lista (->ItemCompra "Feijão" 3 8.75 "Alimentos"))
     (adicionar-item lista (->ItemCompra "Sabonete" 5 2.50 "Higiene"))
+
     @lista
 
     (calcular-valor-item (@lista 1))
-
     ))
