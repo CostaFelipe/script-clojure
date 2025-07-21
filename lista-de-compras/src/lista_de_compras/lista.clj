@@ -10,6 +10,9 @@
 (defn calcular-valor-item [item]
   (* (:quantidade item) (:preco item)))
 
+(defn valor-total[item]
+  (reduce + (map calcular-valor-item item)))
+
 (defn -main []
   (let [lista criar-lista]
     (adicionar-item lista (->ItemCompra "Arroz" 2 9.89 "Alimentos"))
@@ -19,4 +22,4 @@
     @lista
 
     (calcular-valor-item (@lista 1))
-    ))
+    (valor-total @lista)))
