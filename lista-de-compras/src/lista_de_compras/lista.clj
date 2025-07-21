@@ -13,6 +13,10 @@
 (defn valor-total[item]
   (reduce + (map calcular-valor-item item)))
 
+(defn remover-item-lista [lista nome]
+  (swap! lista (fn [items]
+                 (filterv #(not= :nome %) nome) items)))
+
 (defn -main []
   (let [lista criar-lista]
     (adicionar-item lista (->ItemCompra "Arroz" 2 9.89 "Alimentos"))
