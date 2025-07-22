@@ -17,6 +17,9 @@
   (swap! lista (fn [items]
                  (filterv #(not= :nome %) nome) items)))
 
+(defn agrupar-por-categoria [lista]
+  (group-by :categoria lista))
+
 (defn -main []
   (let [lista criar-lista]
     (adicionar-item lista (->ItemCompra "Arroz" 2 9.89 "Alimentos"))
