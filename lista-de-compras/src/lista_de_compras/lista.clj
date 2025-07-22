@@ -20,6 +20,9 @@
 (defn agrupar-por-categoria [lista]
   (group-by :categoria lista))
 
+(defn get-all-items []
+  @criar-lista)
+
 (defn -main []
   (let [lista criar-lista]
     (adicionar-item lista (->ItemCompra "Arroz" 2 9.89 "Alimentos"))
