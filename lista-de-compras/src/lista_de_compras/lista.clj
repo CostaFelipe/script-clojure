@@ -2,7 +2,14 @@
 
 (defrecord ItemCompra [nome quantidade preco categoria])
 
+(defrecord Categoria [nome])
+
 (defonce criar-lista (atom []))
+
+(defonce lista-categoria
+  [(->Categoria "Cereal")
+   (->Categoria "Frutas")
+   (->Categoria "Higiene")])
 
 (defn adicionar-item [lista item]
   (swap! lista conj item))
