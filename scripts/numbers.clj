@@ -217,3 +217,7 @@
 (def colecao (vec (seq (str numero))))
 
 colecao
+
+(defn divisores [numero]
+  (filter #(zero? (rem numero %)) (range 1 (inc numero))))
+; 25 -> (1 5 25)
