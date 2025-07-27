@@ -33,6 +33,9 @@
 (defn get-all-items []
   @criar-lista)
 
+(defn tem-item-above? [items nome]
+  (some #(= (:nome %) nome) items))
+
 (defn -main []
   (let [lista criar-lista]
     (adicionar-item lista (->ItemCompra "Arroz" 2 9.89 "Alimentos"))
