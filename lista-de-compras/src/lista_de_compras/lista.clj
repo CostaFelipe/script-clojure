@@ -18,7 +18,10 @@
   (* (:quantidade item) (:preco item)))
 
 (defn valor-total[item]
-  (reduce + (map calcular-valor-item item)))
+  (->> item
+       (map calcular-valor-item)
+       (reduce +)))
+  ;(reduce + (map calcular-valor-item item)))
 
 (defn remover-item-lista [lista nome]
   (swap! lista (fn [items]
