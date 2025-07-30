@@ -56,6 +56,8 @@
 
 (map (comp str char) (range 97 122))
 
+(map char (range 97 122))
+
 (def me {:first-name "Ryan", :favorite-language "Clojure"})
 
 (str "My name is " (:first-name me) ", and I really like to program in " (:favorite-language me))
@@ -180,3 +182,6 @@
   (str/replace word l1 l2))
 
 (replace-letter "hello" "l" "1")
+
+(defn seq-phone-text [text]
+  (re-seq #"\d{3}-\d{4}" text))
