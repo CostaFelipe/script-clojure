@@ -170,3 +170,8 @@
 (keyword shopping-area "bagels")
 
 (symbol shopping-area "cakes")
+
+(defn palindrome? [word]
+  (= (str/reverse word) word))
+
+(filter palindrome? ["word" "ana" "racecar" "level" "mandam"])
