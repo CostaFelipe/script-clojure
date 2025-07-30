@@ -175,3 +175,8 @@
   (= (str/reverse word) word))
 
 (filter palindrome? ["word" "ana" "racecar" "level" "mandam"])
+
+(defn replace-letter [word l1 l2]
+  (str/replace word l1 l2))
+
+(replace-letter "hello" "l" "1")
