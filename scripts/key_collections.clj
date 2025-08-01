@@ -619,3 +619,8 @@ by-level
 
 display
 (search-name data-base "高橋")
+
+(defn print-seq [s]
+  (when (seq s)
+    (prn (first s))
+    (recur (rest s))))
