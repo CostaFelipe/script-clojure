@@ -36,6 +36,13 @@
 (defn tem-item-above? [items nome]
   (some #(= (:nome %) nome) items))
 
+(defn group-by-category [items]
+  (->> items
+       (group-by :categoria)
+       (map (fn [[categoria item]]
+              [categoria (reduce + (map calcular-valor-item item))]))
+       (into {})))
+
 (defn -main []
   (let [lista criar-lista]
     (adicionar-item lista (->ItemCompra "Arroz" 2 9.89 "Alimentos"))
