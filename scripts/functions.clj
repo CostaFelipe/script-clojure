@@ -265,3 +265,9 @@
 (bite-left-side {:type "wonderland"})
 
 (bite-left-side {:type "regular"})
+
+(defn generate-prices [lower-bound upper-bound]
+  (filter (fn [x] (>= x lower-bound))
+          (repeatedly (fn [] (rand upper-bound)))))
+
+(take 10 (generate-prices 12 35))
