@@ -271,3 +271,7 @@
           (repeatedly (fn [] (rand upper-bound)))))
 
 (take 10 (generate-prices 12 35))
+
+(def pricelist (generate-prices 12 35))
+
+(take 25 (map (fn [x] {:price x}) pricelist))
