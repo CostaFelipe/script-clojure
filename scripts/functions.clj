@@ -270,8 +270,21 @@
   (filter (fn [x] (>= x lower-bound))
           (repeatedly (fn [] (rand upper-bound)))))
 
+(defn generate-timeseries [pricelist]
+  (map (fn [x y]
+         {:time x :price y})
+       (iterate inc 0)
+       pricelist))
+
 (take 10 (generate-prices 12 35))
 
 (def pricelist (generate-prices 12 35))
 
 (take 25 (map (fn [x] {:price x}) pricelist))
+
+(take 25 (map (fn [x y]
+                [x y])
+              (map (fn [x] {:time x}) (iterate inc 0))
+              (map (fn [x] {:price x}) pricelist)))
+
+(take 10 (generate-timeseries pricelist))
