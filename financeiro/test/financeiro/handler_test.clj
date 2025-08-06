@@ -15,4 +15,7 @@
 (facts "Rota inválida não existe"
        (fact "o código de erro é 404"
              (let [response (app (mock/request :get "/invalid"))]
-               (:status response) => 404)))
+               (:status response) => 404))
+       (fact "o texto do corpo é 'Not Found'"
+             (let [response (app (mock/request :get "/invalid"))]
+               (:body response) => "Not Found")))
