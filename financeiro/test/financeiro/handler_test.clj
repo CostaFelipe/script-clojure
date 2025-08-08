@@ -4,18 +4,15 @@
             [financeiro.handler :refer :all]))
 
 (facts "Dá um 'Hello World' na rota raiz"
-       (fact "o status da resposta é 200"
-             (let [response (app (mock/request :get "/"))]
-               (:status response) => 200))
+    (let [response (app (mock/request :get "/"))]
+      (fact "o status da resposta é 200"
+            (:status response) => 200)
 
-       (fact "o texto do corpo é 'Hello World'"
-             (let [response (app (mock/request :get "/"))]
-               (:body response) => "Hello World")))
+      (fact "o texto do corpo é 'Hello World'"
+            (:body response) => "Hello World")))
 
 (facts "Rota inválida não existe"
-       (fact "o código de erro é 404"
-             (let [response (app (mock/request :get "/invalid"))]
-               (:status response) => 404))
-       (fact "o texto do corpo é 'Not Found'"
-             (let [response (app (mock/request :get "/invalid"))]
-               (:body response) => "Not Found")))
+       (let [response (app (mock/request :get "/invalid"))]
+         (fact "o código de erro é 404"
+               (:status response) => 404)
+         (fact "o texto do corpo é 'Not Found'")))
