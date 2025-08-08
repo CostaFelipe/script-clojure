@@ -7,7 +7,8 @@
                  [ring/ring-defaults "0.3.2"]
                  [midje "1.10.10"]]
   :plugins [[lein-ring "0.12.5"]
-            [lein-midje "3.2.2"]]
+            [lein-midje "3.2.2"]
+            [lein-cloverage "1.2.2"]]
   :ring {:handler financeiro.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
