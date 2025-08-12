@@ -1,4 +1,4 @@
-(ns financeiro.aceitacao.saldo-aceitacao-test
+(ns saldo-aceitacao-test
   (:require [midje.sweet :refer :all]
    [financeiro.handler :refer[app]]
    [ring.adapter.jetty :refer [run-jetty]]

@@ -1,4 +1,4 @@
-(ns financeiro.unitarios.handler-test
+(ns handler-test
   (:require [midje.sweet :refer :all]
             [ring.mock.request :as mock]
             [financeiro.handler :refer :all]))
