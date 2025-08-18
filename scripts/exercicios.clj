@@ -39,6 +39,11 @@ sum
 (def all-name (reduce (fn [acc name]
                         (if (empty? acc) name (str acc ", " name))) ""
                       (map :name users)))
+;or
+
+(def all-name-alternative
+  (apply str (interpose ", " (map :name users))))
+
 all-name
 
 ;; TODO: Calcule o salário total de todos os usuários
