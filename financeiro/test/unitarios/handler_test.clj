@@ -1,6 +1,7 @@
 (ns handler-test
   (:require [midje.sweet :refer :all]
             [ring.mock.request :as mock]
+            [cheshire.core :as json]
             [financeiro.handler :refer :all]))
 
 (facts "Dá um 'Hello World' na rota raiz"
@@ -22,4 +23,4 @@
          (fact "o status da resposta é 200"
                (:status response) => 200)
          (fact "o texto do corpo é '0'"
-               (:body response) => "0")))
+               (:body response) => "{\"saldo\":0}")))
