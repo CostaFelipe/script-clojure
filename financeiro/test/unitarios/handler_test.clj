@@ -19,6 +19,7 @@
          (fact "o texto do corpo é 'Not Found'")))
 
 (facts "Saldo inicial é 0"
+       (against-background (json/generate-string {:saldo 0}) => "{\"saldo\":0}")
        (let [response (app (mock/request :get "/saldo"))]
          (fact "o status da resposta é 200"
                (:status response) => 200)
