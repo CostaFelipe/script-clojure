@@ -21,6 +21,9 @@
 (facts "Saldo inicial é 0"
        (against-background (json/generate-string {:saldo 0}) => "{\"saldo\":0}")
        (let [response (app (mock/request :get "/saldo"))]
+         (fact "o formato é 'application/json'"
+               (get-in response [:headers "Content-Type"])
+               => "application/json; charset=utf-8")
          (fact "o status da resposta é 200"
                (:status response) => 200)
          (fact "o texto do corpo é '0'"
