@@ -7,6 +7,7 @@
                  [ring/ring-defaults "0.3.2"]
                  [midje "1.10.10"]
                  [ring "1.9.6"]
+                 [ring/ring-json "0.5.1"]
                  [clj-http "3.13.1"]
                  [cheshire "6.0.0"]]
   :plugins [[lein-ring "0.12.5"]

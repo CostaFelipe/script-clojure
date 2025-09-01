@@ -6,12 +6,12 @@
             [financeiro.db :as db]))
 
 (facts "Dá um 'Hello World' na rota raiz"
-    (let [response (app (mock/request :get "/"))]
-      (fact "o status da resposta é 200"
-            (:status response) => 200)
+       (let [response (app (mock/request :get "/"))]
+         (fact "o status da resposta é 200"
+               (:status response) => 200)
 
-      (fact "o texto do corpo é 'Hello World'"
-            (:body response) => "Hello World")))
+         (fact "o texto do corpo é 'Hello World'"
+               (:body response) => "Hello World")))
 
 (facts "Rota inválida não existe"
        (let [response (app (mock/request :get "/invalid"))]

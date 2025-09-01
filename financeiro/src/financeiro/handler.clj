@@ -3,6 +3,7 @@
             [compojure.route :as route]
             [cheshire.core :as json]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
+            [ring.middleware.json :refer [wrap-json-body]]
             [financeiro.db :as db]))
 
 (defn saldo-como-json []
@@ -16,4 +17,5 @@
   (route/not-found "Not Found"))
 
 (def app
-  (wrap-defaults app-routes api-defaults))
+  (-> (wrap-defaults app-routes api-defaults)
+      (wrap-json-body)))
