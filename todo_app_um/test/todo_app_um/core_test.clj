@@ -4,12 +4,16 @@
 
 (deftest add-test-todo
       (testing "Adicionar uma nova tarefa"
-             (is (= nil (add-todo)))))
+             (assert (= nil (add-todo)))))
 
 (deftest get-todos-test
   (testing "Obter todas as tarefas"
-    (is (= nil (get-todos)))))
+    (assert (= nil (get-todos)))))
 
 (deftest remove-todo-test
   (testing "Deletar uma tarefa"
-    (is (= nil (delete-todo)))))
+    (assert (= nil (delete-todo)))))
+
+(deftest soma-teste
+  (testing "Testando a função soma"
+         (assert (= (soma 2 2) 4))))

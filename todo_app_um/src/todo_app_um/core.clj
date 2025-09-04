@@ -11,6 +11,9 @@
 (defn delete-todo []
   nil)
 
+  (defn soma [x y]
+    (+ x y))
+
 (defn foo
   "I don't do a whole lot."
   [x]
