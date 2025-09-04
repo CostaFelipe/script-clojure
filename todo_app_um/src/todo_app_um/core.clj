@@ -2,6 +2,15 @@
 
 (defonce todos (atom []))
 
+(defn add-todo []
+  nil)
+
+(defn get-todos []
+  nil)
+
+(defn delete-todo []
+  nil)
+
 (defn foo
   "I don't do a whole lot."
   [x]
