@@ -2,11 +2,13 @@
 
 (defonce todos (atom []))
 
+(defn todo [description]
+  {:id (if (empty? @todos) 1 (inc (:id (last @todos))))
+   :description description
+   :completed false})
+
 (defn add-todo [description]
-  (let [id (if (empty? @todos) 1 (inc (:id (last @todos))))
-        new-todo {:id id
-                  :description description
-                  :completed false}]
+  (let [new-todo (todo description)]
     (swap! todos conj new-todo)
     new-todo))
 
