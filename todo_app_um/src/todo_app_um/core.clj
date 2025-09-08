@@ -2,8 +2,13 @@
 
 (defonce todos (atom []))
 
-(defn add-todo []
-  nil)
+(defn add-todo [description]
+  (let [id (if (empty? @todos) 1 (inc (:id (last @todos))))
+        new-todo {:id id
+                  :description description
+                  :completed false}]
+    (swap! todos conj new-todo)
+    new-todo))
 
 (defn get-todos []
   nil)
