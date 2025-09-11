@@ -11,7 +11,12 @@
 
 (deftest get-todos-test
   (testing "Obter todas as tarefas"
-    (assert (= nil (get-todos)))))
+    (add-todo "Tarefa 1")
+    (add-todo "Tarefa 2")
+    (let [todos (get-todos)]
+      (is (= (count todos) 2))
+      (is (= (:description (first todos)) "Tarefa 1"))
+      (is (= (:description (second todos)) "Tarefa 2")))))
 
 (deftest remove-todo-test
   (testing "Deletar uma tarefa"

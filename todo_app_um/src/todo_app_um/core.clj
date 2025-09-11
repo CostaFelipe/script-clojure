@@ -13,7 +13,7 @@
     new-todo))
 
 (defn get-todos []
-  nil)
+  @todos)
 
 (defn delete-todo []
   nil)
