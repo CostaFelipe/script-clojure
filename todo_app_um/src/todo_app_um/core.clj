@@ -15,13 +15,14 @@
 (defn get-todos []
   @todos)
 
+(defn complete-todo [id]
+  (swap! todos (fn [itens]
+                 (map (fn [item]
+                        (if (= (:id item) id)
+                          (assoc item :completed true)
+                          item))
+                      itens)))
+  (first (filter #(= (:id %) id)  @todos)))
+
 (defn delete-todo []
   nil)
-
-  (defn soma [x y]
-    (+ x y))
-
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))

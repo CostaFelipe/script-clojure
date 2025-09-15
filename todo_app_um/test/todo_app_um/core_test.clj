@@ -18,6 +18,14 @@
       (is (= (:description (first todos)) "Tarefa 1"))
       (is (= (:description (second todos)) "Tarefa 2")))))
 
+(deftest complete-todo-test
+  (testing "Marca tarefa como concluída"
+         (add-todo "Tarefa para concluir")
+    (let [todo-id (:id (first (get-todos)))
+          update-todo (complete-todo todo-id)]
+      (is (true? (:completed update-todo))))))
+
+
 (deftest remove-todo-test
   (testing "Deletar uma tarefa"
     (assert (= nil (delete-todo)))))
@@ -28,7 +36,3 @@
 ;;    (is (= "João" (:nome (:usuario mapa))))  ; Verifica o nome do usuário
 ;;    (is (= 30 (:idade (:usuario mapa))))      ; Verifica a idade do usuário
 ;;    (is (:ativo mapa))))
-
-(deftest soma-teste
-  (testing "Testando a função soma"
-         (assert (= (soma 2 2) 4))))
