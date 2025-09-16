@@ -24,5 +24,8 @@
                       itens)))
   (first (filter #(= (:id %) id)  @todos)))
 
-(defn delete-todo []
-  nil)
+(defn delete-todo [id]
+  (let [todo (first (filter #(= (:id %) id) @todos))]
+    (swap! todos (fn [itens]
+                   (vec (remove #(= (:id %) id) itens))))
+    todo))

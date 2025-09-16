@@ -26,9 +26,13 @@
       (is (true? (:completed update-todo))))))
 
 
-(deftest remove-todo-test
-  (testing "Deletar uma tarefa"
-    (assert (= nil (delete-todo)))))
+(deftest delete-todo-test
+  (testing "Remover uma tarefa"
+    (add-todo "Tarefa para excluir")
+    (let [todo-id (:id (first (get-todos)))
+          deleted-todo (delete-todo todo-id)]
+      (is (= (:description deleted-todo) "Tarefa para excluir"))
+      (is (empty? (get-todos))))))
 
 ;;(deftest teste-estrutura-mapa
 ;;  (let [mapa {:usuario {:nome "João", :idade 30}
