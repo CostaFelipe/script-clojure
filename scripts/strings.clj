@@ -34,6 +34,9 @@
 
 (yelling? "testing")
 
+(defn process-name [name]
+  [(str/upper-case name) (count name)])
+
 (apply str [\H \e \l \l \o \  \W \o \r \l \d])
 
 (int \a)
