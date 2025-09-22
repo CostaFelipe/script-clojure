@@ -37,6 +37,10 @@
 (defn process-name [name]
   [(str/upper-case name) (count name)])
 
+(defn process-word [word]
+  {:word (str/upper-case word)
+   :count (count word)})
+
 (apply str [\H \e \l \l \o \  \W \o \r \l \d])
 
 (int \a)
