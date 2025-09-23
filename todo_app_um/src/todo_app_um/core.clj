@@ -2,10 +2,15 @@
 
 (defrecord Todo [id description completed])
 
+(defonce id-counter (atom 0))
+
 (defonce todos (atom []))
 
+(defn generate-id []
+  (swap! id-counter inc))
+
 (defn todo [description]
-  (->Todo (if (empty? @todos) 1 (inc (:id (last @todos))))
+  (->Todo (generate-id)
           description
           false))
 
