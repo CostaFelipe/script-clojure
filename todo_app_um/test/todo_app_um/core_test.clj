@@ -4,6 +4,7 @@
 
 (deftest add-test-todo
       (testing "Adicionar uma nova tarefa"
+        ;(reset! id-counter 1)
              (let [todo (add-todo "Comprar leite")]
                (is (= (:description todo) "Comprar leite"))
                (is (= (:id todo) 1))
