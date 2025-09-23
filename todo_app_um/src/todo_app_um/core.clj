@@ -1,11 +1,13 @@
 (ns todo-app-um.core)
 
+(defrecord Todo [id description completed])
+
 (defonce todos (atom []))
 
 (defn todo [description]
-  {:id (if (empty? @todos) 1 (inc (:id (last @todos))))
-   :description description
-   :completed false})
+  (->Todo (if (empty? @todos) 1 (inc (:id (last @todos))))
+          description
+          false))
 
 (defn add-todo [description]
   (let [new-todo (todo description)]
